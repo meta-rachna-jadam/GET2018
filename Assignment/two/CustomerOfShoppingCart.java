@@ -27,7 +27,7 @@ public class CustomerOfShoppingCart {
 						productName = scanner.next();
 						System.out.println("Enter the product price");
 						float price = scanner.nextFloat();
-						System.out.println("Enter the product price");
+						System.out.println("Enter the product quantity");
 						int quantity = scanner.nextInt();
 						cart.addProduct(productName, price, quantity);
 						break;

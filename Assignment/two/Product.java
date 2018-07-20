@@ -3,6 +3,7 @@ public class Product {
 	private String productName;
 	private float productPrice;
 	private int  numberOfProduct;
+	private boolean isProductBasePromotionApplicable;
 	public Product(String productName,float productPrice,int numberOfProduct)
 	{
 		this.productName=productName;
@@ -29,9 +30,19 @@ public class Product {
 	{
 		return productPrice*numberOfProduct;
 	}
-	public void showProduct()
+	public void showProduct(boolean isPromotionApplicable)
 	{
-		System.out.println(productName+"\t\t"+productPrice+"\t\t"+numberOfProduct+"\t\t\t"+total());
+		if(isPromotionApplicable){
+			System.out.println(productName+"\t\t"+productPrice+"\t\t"+numberOfProduct+"\t\t\t"+total()+
+					"\t\t2%\t\tFinal Amount"+totalWithDiscount());
+		}
+		else {
+			System.out.println(productName+"\t\t"+productPrice+"\t\t"+numberOfProduct+"\t\t\t"+total());
+		}
+		
+	}
+	private double totalWithDiscount() {
+		return ((productPrice*numberOfProduct*2)/100);
 	}
 
 

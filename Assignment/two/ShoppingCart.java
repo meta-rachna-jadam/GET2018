@@ -5,7 +5,7 @@ import java.util.List;
 public class ShoppingCart {
 
 	private List<Product> productList;
-	private Promotion promotion;
+	private Promotion promotionOnOrder,promotionOnProduct;
 	public ShoppingCart()
 	{
 		productList=new ArrayList<Product>();
@@ -63,18 +63,20 @@ public class ShoppingCart {
 	public void generateBill(String promoCode)
 	{
 		double billTotal=0;
-		System.out.println("Name\t\tPrice\t\tQuantity\t\tTotal");
+		System.out.println("Name\t\tPrice\t\tQuantity\t\tDiscount\t\tTotal");
+		promotionOnProduct = new FixedProductPromotion();
+		
 		for(Product product : productList)
 		{
-			product.showProduct();
+			product.showProduct(promotionOnProduct.isPromotionApplicable(promoCode));
 			billTotal+=product.total();
 						
 		}
 		System.out.println("\n\nTotal: "+billTotal);
-		promotion = new FixedOrderPromotion();
-		promotion.setMinimumPrice(3000);
-		promotion.setFixedDiscount(15);
-		double discount = applyPromotion(promotion, promoCode, billTotal);
+		promotionOnOrder = new FixedOrderPromotion();
+		promotionOnOrder.setMinimumPrice(3000);
+		promotionOnOrder.setFixedDiscount(15);
+		double discount = applyOrderBasePromotion(promotionOnOrder, promoCode, billTotal);
 		
 		System.out.println("discount applied: "+discount+" %");
 		billTotal = billTotal - ((discount/100)*billTotal);
@@ -88,7 +90,7 @@ public class ShoppingCart {
 	 * @param amount is the total amount of the Products in the cart 
 	 * @return it returns the % discount that can be applied on the order
 	 */
-	public double applyPromotion(Promotion promotion, String code, double amount)
+	public double applyOrderBasePromotion(Promotion promotion, String code, double amount)
 	{
 		double discount = 0;
 		if(promotion.isPromotionApplicable(code) && amount >= promotion.getMinimumPrice())
@@ -99,11 +101,11 @@ public class ShoppingCart {
 	}
 	
 	public Promotion getPromotion() {
-		return promotion;
+		return promotionOnOrder;
 	}
 
 	public void setPromotion(Promotion promotion) {
-		this.promotion = promotion;
+		this.promotionOnOrder = promotion;
 	}
 	
 }
