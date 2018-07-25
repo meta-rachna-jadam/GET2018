@@ -145,6 +145,29 @@ public class ArrOperation {
      * sum of the numbers on the other side else return -1
      */
     public int getSplitIndex(int[] array){
+    	int sumFromEnd = 0;
+    	int sumFromStart = 0;
+    	int endIndex;
+    	int startIndex;
+        for(startIndex = 0, endIndex = array.length-1; startIndex <= endIndex; ){
+            if(sumFromStart >= sumFromEnd){
+                sumFromEnd += array[endIndex];
+                endIndex--;
+            }
+            else if(sumFromEnd > sumFromStart){
+                sumFromStart += array[startIndex];
+                startIndex++;
+            }
+        }
+        if(sumFromEnd == sumFromStart){
+            return endIndex+1; 
+        }
+        else{
+            return -1;
+        }
+    }
+    
+    /*public int getSplitIndex(int[] array){
         for(int index = 0; index < array.length; index++){
             if(calculateSum(array,0,index) == calculateSum(array, index+1,array.length-1)){
                 return index+1;
@@ -159,5 +182,5 @@ public class ArrOperation {
             sum +=  array[index];
         }
         return sum;
-    }
+    }*/
 }
