@@ -1,0 +1,4 @@
+public enum AnimalName {
+
+	LION, ELEPHANT, CROCODILE, SNAKE, PEACOCK, PARROT;
+}
