@@ -9,6 +9,13 @@ public class PostfixEvaluator {
 		stackInstance = new Stack<String>();
 	}
 
+	/**
+	 * evaluate post fix expression
+	 * 
+	 * @return result of expression
+	 * @throws AssertionError
+	 *             if expression is wrong
+	 */
 	public int postfixEvaluation() throws AssertionError {
 		if (arrayOfOperandsAndOperators.length < 3) {
 			throw new AssertionError("Wrong expression");
@@ -37,6 +44,17 @@ public class PostfixEvaluator {
 		throw new AssertionError("Wrong expression");
 	}
 
+	/**
+	 * this method perform airthmetic operations on the two topmost element of
+	 * stack
+	 * 
+	 * @param operantOne
+	 * @param operantTwo
+	 * @param operator
+	 * @return result of airthmetic operation
+	 * @throws AssertionError
+	 *             other then airthmetic operators are given
+	 */
 	private int evaluateExpression(int operantOne, int operantTwo,
 			String operator) throws AssertionError {
 		if ("+".equals(operator)) {
