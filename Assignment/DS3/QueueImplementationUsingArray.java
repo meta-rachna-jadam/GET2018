@@ -1,12 +1,16 @@
-
-public class QueueImplementationUsingArray implements Queue {
-    private int[] queueArray;
+/**
+ * Queue implementation using array
+ * @author Rachna Jadam
+ * 
+ */
+public class QueueImplementationUsingArray<T> implements Queue<T> {
+    private Object[] queueArray;
     private int front;
     private int rear;
     private int currentSize;
     
-    public QueueImplementationUsingArray() {
-        queueArray = new int[Queue.capacityOfQueue];
+    public QueueImplementationUsingArray(int capacityOfQueue) {
+        queueArray = new Object[capacityOfQueue];
         this.front = 0;
         this.rear = -1;
         this.currentSize = 0;
@@ -17,12 +21,14 @@ public class QueueImplementationUsingArray implements Queue {
      * @param data  data that you want to insert in queue
      */
     @Override
-    public boolean enqueue(int data) throws AssertionError{
+    public boolean enqueue(T data) throws AssertionError {
+    	if (data == null) {
+    	    throw new AssertionError("Data should not be null");
+    	}
     	if (isQueueFull()) {
             throw new AssertionError("Overflow ! Unable to add element in Queue");
         }
-        rear++;
-        if(rear >= queueArray.length && currentSize != queueArray.length){
+        if (++rear >= queueArray.length && currentSize != queueArray.length) {
             rear = 0;
         }
         queueArray[rear] = data;
@@ -35,16 +41,20 @@ public class QueueImplementationUsingArray implements Queue {
      * @return data value which is remove from queue
      */
     @Override
-    public int dequeue() throws AssertionError{
+    public Object dequeue() throws AssertionError {
     	if (isQueueEmpty()) {
             throw new AssertionError("Underflow ! Unable to remove element from Queue");
-        } 
-        else {
-            front++;
-            if(front > queueArray.length-1){
+        }else {
+            if (front++ > queueArray.length-1) {
                 front = 0;
             } 
             currentSize--;
+        }
+        if (front == 0 && rear == queueArray.length-1) {
+            return queueArray[queueArray.length - 1];
+        }
+        if (front == 0 && rear != queueArray.length-1) {
+            return queueArray[0];
         }
     	return queueArray[front - 1];
     }
@@ -54,11 +64,8 @@ public class QueueImplementationUsingArray implements Queue {
      * @return boolean true if queue is full, otherwise false
      */
     @Override
-    public boolean isQueueFull(){
-    	if (currentSize == queueArray.length){
-            return true;
-        }
-        return false;
+    public boolean isQueueFull() {
+    	return (currentSize == queueArray.length); 
     }
     
     /**
@@ -66,10 +73,7 @@ public class QueueImplementationUsingArray implements Queue {
      * @return boolean true if queue is empty, otherwise false
      */
     @Override
-    public boolean isQueueEmpty(){
-    	if (currentSize == 0){
-            return true;
-        }
-        return false;
+    public boolean isQueueEmpty() {
+    	return (currentSize == 0);
     }
 }
