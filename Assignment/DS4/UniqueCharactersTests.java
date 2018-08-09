@@ -10,9 +10,10 @@ public class UniqueCharactersTests {
 	public void testFindUniqueCharactersItReturnNumberOfUniqueCharactersPresentInGivenString() {
 		assertEquals(4, UniqueCharacters.findUniqueCharacters("Hello"));
 		assertEquals(4, UniqueCharacters.findUniqueCharacters("Hello Hello"));
-		assertEquals(9, UniqueCharacters.findUniqueCharacters("Hello Rachna Hello"));
+		assertEquals(8, UniqueCharacters.findUniqueCharacters("Hello Rachna Hello"));
 		assertEquals(4, UniqueCharacters.findUniqueCharacters("Hello                    Hello"));
 		assertEquals(4, UniqueCharacters.findUniqueCharacters("Hello hello"));
+		assertEquals(5, UniqueCharacters.findUniqueCharacters("Hello hi"));
 	}
 
 }
