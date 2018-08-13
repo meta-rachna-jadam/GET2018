@@ -24,7 +24,7 @@ public class Graph implements UndirectedWeightGraph{
 	public Graph(int totalVertex) {
 	    this.totalVertex = totalVertex;
 	    this.vertices = new Vertex[this.totalVertex];
-		for(int i=0; i<this.totalVertex; i++) {
+		for(int index = 0; index < this.totalVertex; index++) {
 			this.vertices[i] = new Vertex();
 		}
 	    
@@ -96,7 +96,7 @@ public class Graph implements UndirectedWeightGraph{
 	 * @param source     Source vertex
 	 * @return           List of visited vertices
 	 */
-	private Set<Integer> dfs(int source) {
+	private Set<Integer> depthFirstSearch(int source) {
 		Stack<Integer> stack = new Stack<Integer>();
 		Set<Integer> visitedVertex = new HashSet<Integer>();
 		stack.push(source);
@@ -119,7 +119,7 @@ public class Graph implements UndirectedWeightGraph{
 	 * @return   true if graph is connected, otherwise false
 	 */
 	public boolean isConnected() {
-		return this.dfs(0).size() == this.totalVertex;
+		return this.depthFirstSearch(0).size() == this.totalVertex;
 	}
 
 	/**
@@ -128,12 +128,12 @@ public class Graph implements UndirectedWeightGraph{
 	 * @return           List of reachable vertices from given vertex
 	 */
 	public int[] reachable(int vertex) {
-		Set<Integer> visitedVertex = this.dfs(vertex);
+		Set<Integer> visitedVertex = this.depthFirstSearch(vertex);
 		int reachableList[] = new int[visitedVertex.size()];
-		Iterator it = visitedVertex.iterator();
+		Iterator iterator = visitedVertex.iterator();
 		int index = 0;
-		while(it.hasNext()) {
-			reachableList[index] = (Integer)it.next();
+		while(iterator.hasNext()) {
+			reachableList[index] = (Integer)iterator.next();
 			index ++;
 		}
 		Arrays.sort(reachableList);
@@ -171,15 +171,15 @@ public class Graph implements UndirectedWeightGraph{
 	}
 
 	/**
-	 * Get Minimum Spanning tree
+	 * Get Minimum Spanning tree using kruskal algorithm
 	 * @return   Spanning tree with vertices and weight
 	 */
 	public int[][] getMinimumSpanningTree() {
 		Collections.sort(this.edgeList, new sortEdgeByWeight());
-		int mst[][] = new int[this.totalVertex-1][3];
+		int minimumSoanningTree[][] = new int[this.totalVertex-1][3];
 		HashMap<Integer, Integer> rootOf = new HashMap<Integer, Integer>();
-		for(int i=0; i<this.totalVertex; i++) {
-			rootOf.put(i, i);
+		for(int index = 0; index < this.totalVertex; index++) {
+			rootOf.put(index, index);
 		}
 		int index = 0;
 		for(Edge edge:this.edgeList) {
@@ -187,13 +187,13 @@ public class Graph implements UndirectedWeightGraph{
 				break;
 			}
 			if(!isCycle(rootOf, edge.getSource(), edge.getDestination())) {
-				mst[index][0] = edge.getSource();
-				mst[index][1] = edge.getDestination();
-				mst[index][2] = edge.getEdgeWeight();
+				minimumSoanningTree[index][0] = edge.getSource();
+				minimumSoanningTree[index][1] = edge.getDestination();
+				minimumSoanningTree[index][2] = edge.getEdgeWeight();
 				index ++;
 			}
 		}
-		return mst;
+		return minimumSoanningTree;
 	}
 
 	/**
@@ -202,29 +202,29 @@ public class Graph implements UndirectedWeightGraph{
 	 * @return          Distance of all vertices from source
 	 */
 	private int[] dijkstra(int source) {
-		int dist[] = new int[this.totalVertex];
-		for(int i=0; i<this.totalVertex; i++) {
-			dist[i] = Integer.MAX_VALUE;
+		int distance[] = new int[this.totalVertex];
+		for(int index = 0; index < this.totalVertex; index++) {
+			distance[index] = Integer.MAX_VALUE;
 		}
 		Set<Integer> visited = new HashSet<Integer>();
-		dist[source] = 0;
-		PriorityQueue<Pair> pq = new PriorityQueue<Pair>(this.totalVertex, new sortPairByWeight());
-		pq.add(new Pair(0, source));
-		while(!pq.isEmpty()) {
-			Pair pair = pq.peek();
-			pq.remove();
+		distance[source] = 0;
+		PriorityQueue<Pair> priorityQueueInstance = new PriorityQueue<Pair>(this.totalVertex, new sortPairByWeight());
+		priorityQueueInstance.add(new Pair(0, source));
+		while(!priorityQueueInstance.isEmpty()) {
+			Pair pair = priorityQueueInstance.peek();
+			priorityQueueInstance.remove();
 			if(visited.contains(pair.getVertex())) {
 				continue;
 			}
 			visited.add(pair.getVertex());
 			for(Neighbour neighbour : this.vertices[pair.getVertex()].getNeighbourList()) {
-				if(dist[neighbour.getNeighbourVertex()] > dist[pair.getVertex()] + neighbour.getEdgeWeight()) {
-					dist[neighbour.getNeighbourVertex()] = dist[pair.getVertex()] + neighbour.getEdgeWeight();
-					pq.add(new Pair(dist[neighbour.getNeighbourVertex()], neighbour.getNeighbourVertex()));
+				if(distance[neighbour.getNeighbourVertex()] > distance[pair.getVertex()] + neighbour.getEdgeWeight()) {
+					distance[neighbour.getNeighbourVertex()] = distance[pair.getVertex()] + neighbour.getEdgeWeight();
+					priorityQueueInstance.add(new Pair(distance[neighbour.getNeighbourVertex()], neighbour.getNeighbourVertex()));
 				}
 			}
 		}
-		return dist;
+		return distance;
 	}
 	
 	/**
@@ -234,8 +234,8 @@ public class Graph implements UndirectedWeightGraph{
 	 * @return              Shortest distance between source and destination
 	 */
 	public int shortestPath(int source, int destination) {
-		int dist[] = this.dijkstra(source);
-		return dist[destination];
+		int distance[] = this.dijkstra(source);
+		return distance[destination];
 	}
 }
 
