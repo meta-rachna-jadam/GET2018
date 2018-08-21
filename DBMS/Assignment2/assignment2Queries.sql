@@ -26,7 +26,8 @@ SELECT child.categoryID, child.categoryName,
 IFNULL(parentCategory.categoryName, 'Top Category') AS parentCategoryName
 FROM category AS child
 LEFT JOIN category AS parentCategory
-ON child.parentCategoryId = parentCategory.categoryID;
+ON child.parentCategoryId = parentCategory.categoryID
+ORDER BY child.categoryName, parentCategoryName;
 
 #Display Id, Title, Parent Category Title of all the leaf Categories (categories which are not parent of any other category)
 
