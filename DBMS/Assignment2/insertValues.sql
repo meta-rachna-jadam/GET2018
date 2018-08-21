@@ -1,7 +1,9 @@
 INSERT INTO user(emailID, password, userName, gender, type, dateOfBirth) 
-VALUES ('rachnajadam@gmail.com', 'rachna', '1234', 'f', 'administrator', '1996-02-09');
+VALUES ('rachnajadam@gmail.com', 'rachna', 'Rachna', 'f', 'administrator', '1996-02-09');
 INSERT INTO user(emailID, password, userName, gender, type, dateOfBirth) 
-VALUES ('rageeni@gmail.com', 'rageeni', '123456', 'f', 'shopper', '1993-11-16');
+VALUES ('rageeni@gmail.com', 'rageeni', 'Rageeni', 'f', 'shopper', '1993-11-16');
+INSERT INTO user(emailID, password, userName, gender, type, dateOfBirth) 
+VALUES ('Akash@gmail.com', 'Akash', 'Akash', 'm', 'shopper', '1993-11-16');
 
 
 INSERT INTO userAddress(userID, street, city, state, pincode)
@@ -22,6 +24,8 @@ INSERT INTO product(productName, details, rating, price, stock)
 VALUES('Mi A1', 'mobile phone', 5.0, 14000.00, 100);
 INSERT INTO product(productName, details, rating, price, stock)
 VALUES('Fridge', 'electronic', 3.0, 23420.00, 10);
+INSERT INTO product(productName, details, rating, price, stock)
+VALUES('Shirt', 'Fashion', 4.0, 500.00, 30);
 
 INSERT INTO productImage(productID, imageLocation, alternateName)
 VALUES(1, 'C:\Users\Rachna\Pictures\MiA1.jpg', 'Mi image');
