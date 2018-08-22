@@ -10,8 +10,8 @@ HAVING COUNT(cpr.productID) > 1;
 SELECT pr.priceRange,COUNT(*) AS ProductCount 
 FROM(
       SELECT CASE
-      WHEN price > 0 AND price < 100 THEN '0-100'
-      WHEN price > 100 AND price < 500 THEN '100-500'
+      WHEN price >= 0 AND price =< 100 THEN '0-100'
+      WHEN price > 100 AND price =< 500 THEN '101-500'
       ELSE 'Above 500' END AS priceRange
       FROM product
     ) 
