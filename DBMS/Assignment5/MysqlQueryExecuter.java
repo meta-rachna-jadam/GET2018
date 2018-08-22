@@ -1,3 +1,4 @@
+import java.sql.BatchUpdateException;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -75,10 +76,14 @@ public class MysqlQueryExecuter {
 				connectionInstance.commit();
 				return result.length;
 
-			} catch (SQLException ex) {
-				ex.printStackTrace();
+			}catch (BatchUpdateException batchUpdateException) {
+				//batchUpdateException.printStackTrace();
 				connectionInstance.rollback();
-				return 0;
+				throw new AssertionError("Product id should present in product table ");
+			} catch (SQLException ex) {
+				//ex.printStackTrace();
+				connectionInstance.rollback();
+				throw new AssertionError("SQLException occured");
 			}
 		}
 		// Step 5: Close the resources - Done automatically by try-with-resources
@@ -116,8 +121,7 @@ public class MysqlQueryExecuter {
      * This method is use to find number of children of top parent categories
      * @return    list of parentCategory
      */
-    public List<ParentCategory> getTopCategoryWithChildrenCount()
-    {
+    public List<ParentCategory> getTopCategoryWithChildrenCount(){
         List<ParentCategory> parentCategoryList =new ArrayList<ParentCategory>();
         
         String query = "SELECT categoryID, categoryName " + 
@@ -129,8 +133,7 @@ public class MysqlQueryExecuter {
         (
         		Connection connectionInstance = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
                 PreparedStatement statement = connectionInstance.prepareStatement(query);
-        )
-        {
+        ){
             ResultSet topCategories = statement.executeQuery();
             while(topCategories.next())
             {
@@ -142,8 +145,7 @@ public class MysqlQueryExecuter {
                 parentCategoryList.add(category);
             }
         } 
-        catch (SQLException sqlException)
-        {
+        catch (SQLException sqlException){
             sqlException.printStackTrace();
         }
         return parentCategoryList;
@@ -154,8 +156,8 @@ public class MysqlQueryExecuter {
      * @param categoryID
      * @return               number of sub category whose category id 
      */
-    private int countSubCategories(int categoryID)
-    {
+    private int countSubCategories(int categoryID){
+    	count = 0;
         String subCategoriesQuery = "SELECT categoryID " + 
                 "FROM category " + 
                 "WHERE parentCategoryID = ?";
@@ -163,20 +165,17 @@ public class MysqlQueryExecuter {
         try(
         		Connection connectionInstance = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
                 PreparedStatement subCategoriesStatement = connectionInstance.prepareStatement(subCategoriesQuery);
-        )
-        {
+        ){
             subCategoriesStatement.setInt(1, categoryID);
             ResultSet subCategoriesSet = subCategoriesStatement.executeQuery();
             
-            while(subCategoriesSet.next())
-            {
+            while(subCategoriesSet.next()){
                 int subCategoryID = subCategoriesSet.getInt("categoryID");
                 
                 count = count + 1 + countSubCategories(subCategoryID);
             }
         }
-        catch (SQLException sqlException)
-        {
+        catch (SQLException sqlException){
             sqlException.printStackTrace();
         }
         return count;
