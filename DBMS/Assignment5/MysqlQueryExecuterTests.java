@@ -22,6 +22,14 @@ public class MysqlQueryExecuterTests {
 			assertTrue("2018-08-15".equals(""+orders.getOrderPlacingDate()));
 			assertEquals(28000.0, orders.getTotalPrice(),0.0);
 		}
+		assertEquals(0, mysqlQueryExecuter.fetchAllOrdersOfAUser(4).size());
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void testInsertImagesOfAProductWithInvalidProductId(){
+		List<ProductImage> productImagesList = new ArrayList<ProductImage>();
+		productImagesList.add(new ProductImage(7, "D:\\Images\\abc.jpg", "abc"));
+		mysqlQueryExecuter.insertImagesOfAProduct(productImagesList);
 	}
 	
 	@Test
