@@ -1,6 +1,10 @@
 import java.util.Date;
 
-
+/**
+ * This class maintain some properties of orders
+ * @author Rachna Jadam
+ *
+ */
 public class Orders {
     private int id;
     private Date orderPlacingDate;
