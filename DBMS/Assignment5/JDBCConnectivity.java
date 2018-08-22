@@ -2,7 +2,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
+/**
+ * This class is use to provide connection object to create connection with database
+ * @author Rachna Jadam
+ *
+ */
 public class JDBCConnectivity {
 
     public static Connection getConnection(String databaseName, String uername, String password)
