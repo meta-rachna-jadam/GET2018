@@ -5,11 +5,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Use to execute mysql queries.
+ * @author Rachna Jadam
+ *
+ */
 public class MysqlQueryExecuter {
 	
     private int count = 0;
 	
+    /**
+     * It fetch all order of a specific user
+     * @param userID    user Id of a user (unique for each user)
+     * @return          list of orders placed by user whose user id equal to userID
+     */
     public List<Orders> fetchAllOrdersOfAUser(int userID) {
 
     	List<Orders> orderList = new ArrayList<Orders>();
@@ -24,14 +33,14 @@ public class MysqlQueryExecuter {
                 " GROUP BY o.orderID"+
                 " ORDER BY o.orderPlacingDate";
         try (
-                // Step 1: Allocate a database 'Connection' object
-                Connection conn = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
+                // Allocate a database 'Connection' object
+                Connection connectionInstance = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
                 // In MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
         		
-                // Step 2: Allocate a 'Statement' object in the Connection
-                PreparedStatement statement = conn.prepareStatement(selectQuery);
+                // Allocate a 'Statement' object in the Connection
+                PreparedStatement statement = connectionInstance.prepareStatement(selectQuery);
             ) {
-            // Step 3: Execute a SQL SELECT query, the query result
+            // Execute a SQL SELECT query, the query result
             // is returned in a 'ResultSet' object.
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) { 
@@ -40,17 +49,21 @@ public class MysqlQueryExecuter {
         }catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
-
         return orderList;
     }
     
+    /**
+     * This method inert multiple images of product/s
+     * @param productImageList    list of images that you want to add
+     * @return                    numbers of images inserted
+     */
     public int insertImagesOfAProduct(List<ProductImage> productImageList){
     	String insertQuery = "INSERT INTO productImage (productID, imageLocation, alternateName) values(?,?,?)";
     	try (
-				Connection conn = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
-				PreparedStatement statement = conn.prepareStatement(insertQuery);) {
+				Connection connectionInstance = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
+				PreparedStatement statement = connectionInstance.prepareStatement(insertQuery);) {
 			try {
-				conn.setAutoCommit(false);
+				connectionInstance.setAutoCommit(false);
 				for (ProductImage productImage : productImageList) {
 					statement.setInt(1, productImage.getProductID());
 					statement.setString(2, productImage.getPathOfImage());
@@ -59,23 +72,27 @@ public class MysqlQueryExecuter {
 				}
 
 				int[] result = statement.executeBatch();
-				conn.commit();
+				connectionInstance.commit();
 				return result.length;
 
 			} catch (SQLException ex) {
 				ex.printStackTrace();
-				conn.rollback();
+				connectionInstance.rollback();
 				return 0;
 			}
 		}
 		// Step 5: Close the resources - Done automatically by try-with-resources
 		catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Error Occurs");
 			return 0;
 		}
     }
     
+    /**
+     * It update product state as inactive which were not ordered by any Shopper
+     *  in last 1 year.
+     * @return    numbers of row updated by this operations
+     */
     public int updateProductStatusWhichWereNotOrderedByAnyShopperInLastOneYear(){
         String deleteQuery = "UPDATE product"+ 
                 " SET productState = 'Inactive' "+
@@ -85,10 +102,9 @@ public class MysqlQueryExecuter {
                 " WHERE o.orderPlacingDate >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)"+ 
                 " GROUP BY productID)"; 
         try (
-                Connection conn = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
-                PreparedStatement statement = conn.prepareStatement(deleteQuery);
+                Connection connectionInstance = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
+                PreparedStatement statement = connectionInstance.prepareStatement(deleteQuery);
             ) {
-        	System.out.println("The SQL query is: " + deleteQuery);
             return statement.executeUpdate();
         }catch (SQLException sqlException) {
             sqlException.printStackTrace(); 
@@ -96,6 +112,10 @@ public class MysqlQueryExecuter {
         }
     }
     
+    /**
+     * This method is use to find number of children of top parent categories
+     * @return    list of parentCategory
+     */
     public List<ParentCategory> getTopCategoryWithChildrenCount()
     {
         List<ParentCategory> parentCategoryList =new ArrayList<ParentCategory>();
@@ -107,8 +127,8 @@ public class MysqlQueryExecuter {
         
         try
         (
-        		Connection conn = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
-                PreparedStatement statement = conn.prepareStatement(query);
+        		Connection connectionInstance = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
+                PreparedStatement statement = connectionInstance.prepareStatement(query);
         )
         {
             ResultSet topCategories = statement.executeQuery();
@@ -129,7 +149,11 @@ public class MysqlQueryExecuter {
         return parentCategoryList;
     }
     
-
+    /**
+     * This method count sub categories of a particular category
+     * @param categoryID
+     * @return               number of sub category whose category id 
+     */
     private int countSubCategories(int categoryID)
     {
         String subCategoriesQuery = "SELECT categoryID " + 
@@ -137,8 +161,8 @@ public class MysqlQueryExecuter {
                 "WHERE parentCategoryID = ?";
 
         try(
-        		Connection conn = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
-                PreparedStatement subCategoriesStatement = conn.prepareStatement(subCategoriesQuery);
+        		Connection connectionInstance = JDBCConnectivity.getConnection("storeFront", "root", "r@jkum@ri");
+                PreparedStatement subCategoriesStatement = connectionInstance.prepareStatement(subCategoriesQuery);
         )
         {
             subCategoriesStatement.setInt(1, categoryID);
