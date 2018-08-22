@@ -1,4 +1,8 @@
-
+/**
+ * This class maintain some properties of product image
+ * @author Rachna Jadam
+ *
+ */
 public class ProductImage {
 
     private int productID;
