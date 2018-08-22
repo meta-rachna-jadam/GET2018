@@ -1,4 +1,8 @@
-
+/**
+ * This class maintain some properties of parent category
+ * @author Rachna Jadam
+ *
+ */
 public class ParentCategory {
 
 	private int id;
