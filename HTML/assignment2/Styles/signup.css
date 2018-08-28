@@ -1,0 +1,19 @@
+#signUpField{
+	margin-top : 50px;
+	padding : 10px;
+}
+#signUpTable  {
+	align : center;
+	width : 60%;
+}
+#signUpTable tr td input{
+	width : 100%;
+}
+#signUpTable tr td select{
+	width : 100%;
+}
+a{
+	color : #000000;
+	text-decoration: none;
+	margin-left : 3px;
+}

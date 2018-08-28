@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<title>
+			Sign Up
+		</title>
+		<link href="Styles/signup.css"  rel="stylesheet">
+		<script src="Scripts/validation.js"></script>
+	</head>
+	<body>
+		<DIV >
+			<TABLE WIDTH="75%" ALIGN="CENTER">
+				<TR>
+					<TD >
+						<IMG SRC="Capture.PNG" WIDTH="30PX">
+					</TD>
+					<TD ALIGN="RIGHT">
+						<A HREF="Session1Assignment1.html" >Home</A>
+						<A HREF="#" >About</A>
+						<A HREF="#" >Product</A>
+						<A HREF="#" >Gallery</A>
+						<A HREF="Contact.html" >Contact</A>
+						<A HREF="signup.html" >Sign up</A>
+						<A HREF="login.html" >Login</A>
+					</TD>
+				</TR>
+			</TABLE>
+			<HR/>
+		</DIV>
+		
+		 <form action="login.html" method="" onsubmit="return validateSignupForm()">
+			<div align="center">
+				<fieldset style="width:50%" id="signUpField">
+					<legend>Registration:</legend>
+					<table id="signUpTable" align="center">
+						<tr>
+							<td>
+								<span>First Name</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="firstName" placeholder="First Name" name="firstName" onkeyup="validateName(this)" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Last Name</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="lastName" placeholder="Last Name" name="lastName" onkeyup="validateName(this)" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Email Id</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="emailId" placeholder="Email Id" name="emailId" onkeyup="validateEmail(this)" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Password</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="password" id="password" placeholder="Password" name="password" onkeyup="validatePassword(this)" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Confirm Password</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="password" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword" 
+								onkeyup="checkPassword(document.getElementById('password'), this)" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Contact Number</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" pattern="[0-9]" id="contactNumber" placeholder="Contact Number" name="contactNumber" onkeyup="validateNumber(this)" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Company/Institution</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select>
+									<option>Google</option>
+									<option>Microsoft</option>
+									<option>Metacube</option>
+									<option>UXArmy</option>
+									<option>Infosis</option>
+									<option>TCS</option>
+									<option>Tech. Mahindra</option>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" >
+								<input style="width:100px; margin-top:30px" type="submit" value="Submit" />
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+			</div>
+</form> 
+	</body>
+</html>
