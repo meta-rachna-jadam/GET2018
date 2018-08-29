@@ -26,11 +26,10 @@
 			</TABLE>
 			<HR/>
 		</DIV>
-		
-		 <form action="login.html" method="" onsubmit="return validateSignupForm()">
+		 <form id="signUpForm" action="profile.html" method="">
 			<div align="center">
-				<fieldset style="width:50%" id="signUpField">
-					<legend>Registration:</legend>
+				<fieldset id="signUpField">
+					<legend><b class="titleField">Registration:</b></legend>
 					<table id="signUpTable" align="center">
 						<tr>
 							<td>
@@ -39,7 +38,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="firstName" placeholder="First Name" name="firstName" onkeyup="validateName(this)" />
+								<input type="text" id="firstName" placeholder="First Name" name="firstName" onkeyup="validateName(this)" onchange="validateName(this)" />
 							</td>
 						</tr>
 						<tr>
@@ -49,7 +48,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="lastName" placeholder="Last Name" name="lastName" onkeyup="validateName(this)" />
+								<input type="text" id="lastName" placeholder="Last Name" name="lastName" onkeyup="validateName(this)" onchange="validateName(this)" />
 							</td>
 						</tr>
 						<tr>
@@ -59,7 +58,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="emailId" placeholder="Email Id" name="emailId" onkeyup="validateEmail(this)" />
+								<input type="text" id="emailId" placeholder="Email Id" name="emailId" onkeyup="validateEmail(this)" onchange="validateEmail(this)" />
 							</td>
 						</tr>
 						<tr>
@@ -69,7 +68,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="password" id="password" placeholder="Password" name="password" onkeyup="validatePassword(this)" />
+								<input type="password" id="password" placeholder="Password" name="password" onkeyup="validatePassword(this)" onchange="validatePassword(this)" />
 							</td>
 						</tr>
 						<tr>
@@ -80,7 +79,7 @@
 						<tr>
 							<td>
 								<input type="password" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword" 
-								onkeyup="checkPassword(document.getElementById('password'), this)" />
+								onkeyup="checkPassword(document.getElementById('password'), this)" onchange="checkPassword(document.getElementById('password'), this)" />
 							</td>
 						</tr>
 						<tr>
@@ -90,7 +89,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" pattern="[0-9]" id="contactNumber" placeholder="Contact Number" name="contactNumber" onkeyup="validateNumber(this)" />
+								<input type="text" id="contactNumber" placeholder="Contact Number" name="contactNumber" onkeyup="validateNumber(this)" onchange="validateNumber(this)" />
 							</td>
 						</tr>
 						<tr>
@@ -110,14 +109,10 @@
 									<option>Tech. Mahindra</option>
 							</td>
 						</tr>
-						<tr>
-							<td align="center" >
-								<input style="width:100px; margin-top:30px" type="submit" value="Submit" />
-							</td>
-						</tr>
 					</table>
+					<input id="submitButton" type="button" value="Submit"  onclick="return validateSignupForm()"/>
 				</fieldset>
 			</div>
-</form> 
+		</form> 
 	</body>
 </html>
