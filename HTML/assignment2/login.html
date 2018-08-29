@@ -4,13 +4,14 @@
 			Login
 		</title>
 		<link href="Styles/signup.css"  rel="stylesheet">
+		<script src="Scripts/validation.js"></script>
 	</head>
 	<body>
 		<DIV >
 			<TABLE WIDTH="75%" ALIGN="CENTER">
 				<TR>
 					<TD >
-						<IMG SRC="Capture.PNG" WIDTH="30PX">
+						<IMG class="logoImg" SRC="Capture.PNG" WIDTH="30PX">
 					</TD>
 					<TD ALIGN="RIGHT">
 						<A HREF="Session1Assignment1.html" >Home</A>
@@ -25,11 +26,11 @@
 			</TABLE>
 			<HR/>
 		</DIV>
-		 <form action="profile.html" method="">
+		 <form action="profile.html" method="post" id="loginForm">
 			<div align="center">
-				<fieldset style="width:50%" id="signUpField">
-					<legend>Registration:</legend>
-					<table id="signUpTable" align="center">
+				<fieldset id="signUpField">
+					<legend><b class="titleField">Login:</b></legend>
+					<table id="loginTable" align="center">
 						<tr>
 							<td>
 								<span>Email Id</span>
@@ -37,7 +38,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="emailId" placeholder="Email Id" name="emailId" />
+								<input type="text" id="loginEmailId" placeholder="Email Id" name="emailId" onkeyup="validateEmail(this)" onchange="validateEmail(this)" />
 							</td>
 						</tr>
 						<tr>
@@ -47,19 +48,14 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="password" id="password" placeholder="Password" name="password" />
+								<input type="password" id="loginPassword" placeholder="Password" name="password" onkeyup="validatePassword(this)" onchange="validatePassword(this)"  />
 							</td>
-						</tr>
-						<tr>
-							<td align="left">
-								<input style="width:100px" type="submit" id="editInfo" value="Login	" />
-								<a href="#" style="margin-left:230px;color:blue">Forgotten password?</a>
-							</td>
-							
 						</tr>
 					</table>
+					<input type="button" id="login" value="Login" onclick="return validateLoginForm()" />
+					<a href="#" id="forgottPassword">Forgotten password?</a>
 				</fieldset>
 			</div>
-</form> 
+        </form> 
 	</body>
 </html>
