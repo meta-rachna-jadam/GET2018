@@ -3,8 +3,8 @@
 		<title>
 			Profile Information
 		</title>
-		<link href="Styles/signup.css"  rel="stylesheet">
-		<l>
+		<link href="Styles/signup.css"  rel="stylesheet" type="text/css">
+		<script src="Scripts/profile.js"></script>
 	</head>
 	<body>
 		<DIV >
@@ -19,19 +19,18 @@
 						<A HREF="#" >Product</A>
 						<A HREF="#" >Gallery</A>
 						<A HREF="Contact.html" >Contact</A>
-						<span style="margin-left:10px; color:#ff0000">Rachna Jadam | </A>
+						<A HREF="#" id="userName" >Rachna Jadam | </A>
 						<A HREF="login.html" >Logout</A>
 					</TD>
 				</TR>
 			</TABLE>
 			<HR/>
 		</DIV>
-		
 		 <form action="" method="">
 			<div align="center">
-				<fieldset style="width:50%" id="signUpField">
-					<legend>Profile Information</legend>
-					<table id="signUpTable" align="center">
+				<fieldset id="signUpField">
+					<legend><b class="titleField">Profile Information</b></legend>
+					<table id="profileTable" align="center">
 						<tr>
 							<td>
 								<span>First Name</span>
@@ -39,7 +38,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="firstName" value="First Name" name="firstName" disabled />
+								<input type="text" id="firstName"  value="First Name" name="firstName" disabled="true" />
 							</td>
 						</tr>
 						<tr>
@@ -49,7 +48,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="lastName" value="Last Name" name="lastName" disabled />
+								<input type="text" id="lastName" value="Last Name" name="lastName" disabled="true" />
 							</td>
 						</tr>
 						<tr>
@@ -59,7 +58,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="emailId" value="Email Id" name="emailId" disabled />
+								<input type="text" id="emailId" value="Email Id" name="emailId" disabled="true" />
 							</td>
 						</tr>
 						<tr>
@@ -69,7 +68,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="contactNumber" value="Contact Number" name="contactNumber" disabled />
+								<input type="text" id="contactNumber" value="Contact Number" name="contactNumber" disabled="true" />
 							</td>
 						</tr>
 						<tr>
@@ -79,17 +78,13 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="companyInstitution" value="Company/Institution" name="companyInstitution" disabled />
-							</td>
-						</tr>
-						<tr>
-							<td align="center" width="100px">
-								<input style="width:200px; margin-top:30px" type="button" id="edit" value="Edit Information" />
+								<input type="text" id="companyInstitution" value="Company/Institution" name="companyInstitution" disabled="true" />
 							</td>
 						</tr>
 					</table>
+					<input  type="button" id="edit" value="Edit Information" onclick="editClick()"/>
 				</fieldset>
 			</div>
-</form> 
+		</form> 
 	</body>
 </html>
