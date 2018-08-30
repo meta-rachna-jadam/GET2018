@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+		<link href="../styles/form.css"  rel="stylesheet" />
+		<script src="../scripts/validation.js"></script>
+	</head>
+	<body>
+		<div class = "formDiv" align="center">
+			<h1>Add Employee Detail</h1>
+			<form action="../AddEmployeeServlet" method="post" id="addEmployeeForm">
+				<table>
+					<tr>
+						<td><span>First Name</span></td>
+						<td>
+							<input type="text" placeholder="First Name" name="firstName" id="firstName" 
+							onkeyup="validateName(this)" onchange="validateName(this)"  />
+						</td>
+					</tr>
+					<tr>
+						<td><span>Last Name</span></td>
+						<td>
+							<input type="text" placeholder="Last Name" name="lastName" id="lastName"
+							onkeyup="validateName(this)" onchange="validateName(this)"  />
+						</td>
+					</tr>
+					<tr>
+						<td><span>Email Id</span></td>
+						<td>
+							<input type="text" placeholder="emailId" name="emailId" id="emailId"
+							onkeyup="validateEmail(this)" onchange="validateEmail(this)" />
+						</td>
+					</tr>
+					<tr>
+						<td><span>Age</span></td>
+						<td>
+							<input type="number" placeholder="Age" name="age" id="age"
+							onkeyup="validateAge(this)" onchange="validateAge(this)" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="hidden" value="add" name="queryType" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="button" value="Submit" onclick="return validateForm()"/>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

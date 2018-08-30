@@ -1,0 +1,24 @@
+@CHARSET "ISO-8859-1";
+.formDiv{
+	margin-top: 50px;
+	align : center;
+}
+
+td,
+th{
+	text-align: left;
+}
+
+
+a:hover{
+	background-color : #ff4500;
+	color : white;
+	border-radius : 8px;
+}
+
+a{
+	color : #000000;
+	text-decoration: none;
+	margin-top : 50px;
+	padding: 5px;
+}
