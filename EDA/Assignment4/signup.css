@@ -1,0 +1,72 @@
+#signUpField{
+	margin-top : 50px;
+	padding : 10px;
+}
+#signUpTable ,
+#profileTable ,
+#loginTable{
+	align : center;
+	width : 60%;
+}
+#signUpTable tr td input,
+#profileTable tr td input,
+#loginTable tr td input{
+	width : 100%;
+}
+#signUpTable tr td select,
+#profileTable tr td select,
+#loginTable tr td select{
+	width : 100%;
+}
+a{
+	color : #000000;
+	text-decoration: none;
+	padding : 5px;
+}
+#userName:hover,
+a:hover{
+	background-color : #ff4500;
+	color : white;
+	border-radius : 8px;
+}
+#userName{
+	margin-left : 10px; 
+	color : #ff0000;
+}
+fieldset{
+	width : 50%;
+	border-radius : 10px;
+	color : gray;
+	box-shadow: 5px 5px;
+}
+lfieldset egend{
+	color : red;
+}
+#edit{
+	width : 200px;
+	margin-top : 30px;
+}
+#submitButton ,
+#login{
+	width : 100px; 
+	margin-top : 30px;
+	background-color : green;
+	border-radius : 8px;
+	color : white;
+}
+.titleField{
+	color : ff4500;
+	font-size : 30px;
+}
+#submitButton:hover ,
+#login:hover{
+	background-color : #00aa00;
+}
+#forgottPassword{
+	margin-left : 230px;
+	color : blue;
+}
+#forgottPassword:hover{
+	background-color : white;
+	padding : 0px;
+}

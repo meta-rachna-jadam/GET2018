@@ -1,0 +1,131 @@
+<html>
+	<head>
+		<title>
+			Sign Up
+		</title>
+		<link href="../style/signup.css"  rel="stylesheet">
+		<script src="../script/validation.js"></script>
+	</head>
+	<body>
+		<div >
+			<table WIDTH="75%" ALIGN="CENTER">
+				<tr>
+					<td>
+						<img SRC="" alt="logo" WIDTH="30PX">
+					</td>
+					<td ALIGN="RIGHT">
+						<a HREF="../index.html" >Home</a>
+						<a HREF="#" >About</a>
+						<a HREF="#" >Product</a>
+						<a HREF="#" >Gallery</a>
+						<a HREF="#" >Contact</a>
+						<a HREF="signup.html" >Sign up</a>
+						<a HREF="login.html" >Login</a>
+					</td>
+				</tr>
+			</table>
+			<hr/>
+		</div>
+		 <form id="signUpForm" action="../AddAndEditEmployeeServlet" method="post">
+			<div align="center">
+				<fieldset id="signUpField">
+					<legend><b class="titleField">Registration:</b></legend>
+					<input type="hidden" name="queryType" value="addEmployee" />
+					<table id="signUpTable" align="center">
+						<tr>
+							<td>
+								<span>First Name</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="firstName" pattern="([a-zA-Z]{3,30}\s*)+" placeholder="First Name" name="firstName" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Last Name</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="lastName" pattern="[a-zA-Z]{3,30}" placeholder="Last Name" name="lastName" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Age</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" pattern="^(1[89]|[2-9]\d)$" id="age" placeholder="Age" name="age" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Date Of Birth</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="date"  id="dateOfBirth" name="dateOfBirth" min="2014-05-11" max="2018-08-31"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Contact Number</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" pattern="[0-9]{8,15}" id="contactNumber" placeholder="Contact Number" name="contactNumber" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Email Id</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="emailId"
+								 placeholder="Email Id" name="emailId"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Password</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" 
+								placeholder="Password" name="password" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Company/Institution</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select id="company" name="companyId">
+									<option value="1">Google</option>
+									<option value="2">Microsoft</option>
+									<option value="3">Metacube</option>
+									<option value="4">UXArmy</option>
+									<option value="5">Infosis</option>
+									<option value="6">TCS</option>
+									<option value="7">Tech. Mahindra</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+					<input id="submitButton" type="submit" value="Submit" />
+				</fieldset>
+			</div>
+		</form> 
+	</body>
+</html>

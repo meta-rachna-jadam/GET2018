@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<title>
+			Login
+		</title>
+		<link href="../style/signup.css"  rel="stylesheet">
+	</head>
+	<body>
+		<div >
+			<table WIDTH="75%" ALIGN="CENTER">
+				<tr>
+					<td >
+						<img SRC="" alt="logo" WIDTH="30PX">
+					</td>
+					<td ALIGN="RIGHT">
+						<a HREF="../index.html" >Home</a>
+						<a HREF="#" >About</a>
+						<a HREF="#" >Product</a>
+						<a HREF="#" >Gallery</a>
+						<a HREF="#" >Contact</a>
+						<a HREF="signup.html" >Sign up</a>
+						<a HREF="login.html" >Login</a>
+					</td>
+				</tr>
+			</table>
+			<hr/>
+		</div>
+		 <form action="profile.html" method="post" id="loginForm">
+			<div align="center">
+				<fieldset id="signUpField">
+					<legend><b class="titleField">Login:</b></legend>
+					<table id="loginTable" align="center">
+						<tr>
+							<td>
+								<span>Email Id</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="loginEmailId" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+								 placeholder="Email Id" name="emailId" onkeyup="validateEmail(this)" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>Password</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="password" id="loginPassword" placeholder="Password"
+								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" name="password" />
+							</td>
+						</tr>
+					</table>
+					<input type="submit" id="login" value="Login" />
+					<a href="#" id="forgottPassword">Forgotten password?</a>
+				</fieldset>
+			</div>
+        </form> 
+	</body>
+</html>
