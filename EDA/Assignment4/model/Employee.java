@@ -16,13 +16,30 @@ public class Employee {
      private Date dateOfBirth;
      private int companyId;
      
+     public Employee(int id,int age, String firstName, String lastName, String emailId,
+ 			String contactNumber, Date dateOfBirth, int companyId) throws NotValidEmployeeException {
+ 		
+ 		if (id < 0 || firstName.length() == 0 || lastName.length() == 0 || emailId.length() == 0 || contactNumber.length() == 0 || age < 18 || age > 99) {
+ 			
+ 			throw new NotValidEmployeeException("Employee", "Invalid Employee", "Employee entry is not valid");
+ 		}
+ 		this.id = id;
+ 		this.age = age;
+ 		this.firstName = firstName;
+ 		this.lastName = lastName;
+ 		this.emailId = emailId;
+ 		this.contactNumber = contactNumber;
+ 		this.dateOfBirth = dateOfBirth;
+ 		this.companyId = companyId;
+ 	}
+     
 	public Employee(int age, String firstName, String lastName, String emailId,
 			String password, String contactNumber, Date dateOfBirth, int companyId) throws NotValidEmployeeException {
 		
 		if (firstName.length() == 0 || lastName.length() == 0 || emailId.length() == 0 || password.length() == 0 || 
 				contactNumber.length() == 0 || age < 18 || age > 99) {
 			
-			throw new NotValidEmployeeException("Employee entry is not valid");
+			throw new NotValidEmployeeException("Employee", "Invalid Employee", "Employee entry is not valid");
 		}
 		this.age = age;
 		this.firstName = firstName;
@@ -40,7 +57,7 @@ public class Employee {
 		if (firstName.length() == 0 || lastName.length() == 0 || emailId.length() == 0 || password.length() == 0 || 
 				contactNumber.length() == 0 || age < 18 || age > 99 || id < 0) {
 			
-			throw new NotValidEmployeeException("Employee entry is not valid");
+			throw new NotValidEmployeeException("Employee", "Invalid Employee", "Employee entry is not valid");
 		}
 		this.id = id;
 		this.age = age;
