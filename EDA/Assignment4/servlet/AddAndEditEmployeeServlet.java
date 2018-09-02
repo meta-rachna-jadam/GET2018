@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.CustomException.NotValidEmployeeException;
+import com.model.Employee;
+
+import com.controller.EmployeeController;
+
 /**
  * Servlet implementation class AddAndEditEmployeeServlet
  */
@@ -35,14 +40,26 @@ public class AddAndEditEmployeeServlet extends HttpServlet {
         String contactNumber = request.getParameter("contactNumber");
         int companyId = Integer.parseInt(request.getParameter("companyId"));
         int age = Integer.parseInt(request.getParameter("age"));
+        Date dateOfBirth = null;
+        EmployeeController employeeController = new EmployeeController();
         try {
-			Date dateOfBirth = new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("dateOfBirth"));
+			dateOfBirth = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dateOfBirth"));
 		} catch (ParseException parseException) {
 			parseException.printStackTrace();
 		}
         
+        Employee employee = null;
+		try {
+			employee = new Employee(age, firstName, lastName, emailId, password, contactNumber, dateOfBirth, companyId);
+		} catch (NotValidEmployeeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
         if ("addEmployee".equals(queryType)) {
         	
+        	employeeController.createEmployee(employee);
+        	response.sendRedirect("./html/login.html");
         } else if ("editEmployee".equals(queryType)) {
         	
         }
