@@ -1,16 +1,10 @@
 package com.CustomException;
 
+import com.model.DatabaseException;
+
 public class NotValidEmployeeException extends Exception {
 
-	private String exception;
-
-	public NotValidEmployeeException(String exception) {
-		this.exception = exception;
+	public NotValidEmployeeException(String className, String exceptionNam, String exceptionDescription) {
+	    new DatabaseException(className, exceptionNam, exceptionDescription);
 	}
-
-	@Override
-	public String toString() {
-		return exception;
-	}
-    
 }
