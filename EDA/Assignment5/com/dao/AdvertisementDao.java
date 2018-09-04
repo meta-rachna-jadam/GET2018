@@ -43,8 +43,9 @@ public class AdvertisementDao {
             	
             ResultSet advertisementResultSet = preparedStatementToAddAdvertisements.executeQuery();
             while (advertisementResultSet.next()) {
-            	advertisementList.add(new Advertisement(advertisementResultSet.getString("advertisementTitle"), 
-            	    advertisementResultSet.getString("advertisementDESC"), advertisementResultSet.getInt("categoryId")));
+            	advertisementList.add(new Advertisement(advertisementResultSet.getInt("advertisementId"), 
+            	advertisementResultSet.getString("advertisementTitle"), advertisementResultSet.getString("advertisementDESC"),
+            	advertisementResultSet.getInt("categoryId")));
             }
             return advertisementList;
         } catch (SQLException sqlException) {
