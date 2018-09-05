@@ -16,13 +16,13 @@ public class AdvertisementDao {
 	/**
 	 * To add advertisement in database
 	 * @param advertisement
-	 * @return
+	 * @return 1 if add successfully, 0 if add failed and -1 if error 
 	 */
     public int addAdvertisement(Advertisement advertisement) {
         try (
 	        Connection connectionInstance = JDBCConnection.getConnection(DBConstants.databaseName, 
                 DBConstants.userName, DBConstants.password);
-            PreparedStatement preparedStatementToAddAdvertisement = connectionInstance.prepareStatement(AdvertisementQuery.addAdvertisement);) {
+            PreparedStatement preparedStatementToAddAdvertisement = connectionInstance.prepareStatement(AdvertisementQuery.ADD_ADVERTISEMENT);) {
         	
             preparedStatementToAddAdvertisement.setString(1, advertisement.getTitle());
             preparedStatementToAddAdvertisement.setString(2, advertisement.getDescription());
@@ -34,12 +34,16 @@ public class AdvertisementDao {
 	    }
     }
     
+    /**
+	 * To get all advertisements from database
+	 * @return list of advertisements
+	 */
     public List<Advertisement> getAllAdvertisements() {
     	List<Advertisement> advertisementList = new ArrayList<Advertisement>();
     	try (
     	    Connection connectionInstance = JDBCConnection.getConnection(DBConstants.databaseName, 
                 DBConstants.userName, DBConstants.password);
-            PreparedStatement preparedStatementToGetAdvertisements = connectionInstance.prepareStatement(AdvertisementQuery.getAllAdvertisement);) {
+            PreparedStatement preparedStatementToGetAdvertisements = connectionInstance.prepareStatement(AdvertisementQuery.GET_ALL_ADVERTISEMENT);) {
             	
             ResultSet advertisementResultSet = preparedStatementToGetAdvertisements.executeQuery();
             while (advertisementResultSet.next()) {
@@ -54,13 +58,18 @@ public class AdvertisementDao {
     	}
     }
     
+    /**
+     * To get all advertisements from database by categoryId
+     * @param categoryId
+     * @return list of advertisements
+     */
     public List<Advertisement> getAllAdvertisementByCategoryId(int categoryId) {
     	List<Advertisement> advertisementList = new ArrayList<Advertisement>();
     	try (
     	    Connection connectionInstance = JDBCConnection.getConnection(DBConstants.databaseName, 
                 DBConstants.userName, DBConstants.password);
             PreparedStatement preparedStatementToGetAdvertisements = 
-                connectionInstance.prepareStatement(AdvertisementQuery.getAllAdvertisementByCategoryId);) {
+                connectionInstance.prepareStatement(AdvertisementQuery.GET_ALL_ADVERTISEMENT_BY_CATEGORY_ID);) {
     		
     		preparedStatementToGetAdvertisements.setInt(1, categoryId);
             	
@@ -75,7 +84,12 @@ public class AdvertisementDao {
             return null;
     	}
     }
-
+    
+    /**
+     * To delete advertisement from database by advertisementId
+     * @param advertisementId
+     * @return 1 if delete successfully, 0 if delete failed and -1 if error 
+     */
     public int deleteAdvertisementById(int advertisementId) {
     	try (
     	    Connection connectionInstance = JDBCConnection.getConnection(DBConstants.databaseName, 
@@ -92,6 +106,12 @@ public class AdvertisementDao {
     	}
     }
     
+    /**
+     * To update advertisementTitle in database
+     * @param advertisementTitle1 update to
+     * @param advertisementTitle2 initial value
+     * @return -1 if error, 0 if update failed and else if error 
+     */
     public int updateAdvertisementByTitle(String advertisementTitle1, String advertisementTitle2) {
     	try (
     	    Connection connectionInstance = JDBCConnection.getConnection(DBConstants.databaseName, 
