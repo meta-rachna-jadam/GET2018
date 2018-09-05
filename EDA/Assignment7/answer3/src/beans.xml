@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <!-- Definition for javaCollection -->
+   <bean id = "collectionInjectionImplementation" class = "com.metacube.training.CollectionInjectionImplementation">
+      
+      <!-- results in a setCategoryList(java.util.List) call -->
+      <property name = "categoryList">
+         <list>
+            <value>Home</value>
+            <value>Beauty</value>
+            <value>Clothing</value>
+            <value>Footwear</value>
+            <value>Accessories</value>
+            <value>Home</value>
+            <value>Beauty</value>
+            <value>Electronics</value>
+         </list>
+      </property>
+
+      <!-- results in a setCategorySet(java.util.Set) call -->
+      <property name = "categorySet">
+         <set>
+            <value>Home</value>
+            <value>Beauty</value>
+            <value>Clothing</value>
+            <value>Footwear</value>
+            <value>Accessories</value>
+            <value>Electronics</value>
+            <value>Home</value>
+            <value>Beauty</value>
+         </set>
+      </property>
+
+      <!-- results in a setCategoryMap(java.util.Map) call -->
+      <property name = "categoryMap">
+         <map>
+            <entry key = "1" value = "Home"/>
+            <entry key = "2" value = "Beauty"/>
+            <entry key = "3" value = "Clothing"/>
+            <entry key = "4" value = "Footwear"/>
+            <entry key = "5" value = "Accessories"/>
+            <entry key = "6" value = "Electronics"/>
+            <entry key = "7" value = "Clothing"/>
+            <entry key = "8" value = "Footwear"/>
+         </map>
+      </property>
+      
+   </bean>
+
+</beans>
