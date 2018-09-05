@@ -110,7 +110,7 @@ public class AdvertisementDao {
      * To update advertisementTitle in database
      * @param advertisementTitle1 update to
      * @param advertisementTitle2 initial value
-     * @return -1 if error, 0 if update failed and else if error 
+     * @return -1 if error, 0 if update failed and else update successfully
      */
     public int updateAdvertisementByTitle(String advertisementTitle1, String advertisementTitle2) {
     	try (
