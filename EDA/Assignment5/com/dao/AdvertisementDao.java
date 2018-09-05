@@ -39,9 +39,9 @@ public class AdvertisementDao {
     	try (
     	    Connection connectionInstance = JDBCConnection.getConnection(DBConstants.databaseName, 
                 DBConstants.userName, DBConstants.password);
-            PreparedStatement preparedStatementToAddAdvertisements = connectionInstance.prepareStatement(AdvertisementQuery.getAllAdvertisement);) {
+            PreparedStatement preparedStatementToGetAdvertisements = connectionInstance.prepareStatement(AdvertisementQuery.getAllAdvertisement);) {
             	
-            ResultSet advertisementResultSet = preparedStatementToAddAdvertisements.executeQuery();
+            ResultSet advertisementResultSet = preparedStatementToGetAdvertisements.executeQuery();
             while (advertisementResultSet.next()) {
             	advertisementList.add(new Advertisement(advertisementResultSet.getInt("advertisementId"), 
             	advertisementResultSet.getString("advertisementTitle"), advertisementResultSet.getString("advertisementDESC"),
@@ -53,5 +53,59 @@ public class AdvertisementDao {
             return null;
     	}
     }
+    
+    public List<Advertisement> getAllAdvertisementByCategoryId(int categoryId) {
+    	List<Advertisement> advertisementList = new ArrayList<Advertisement>();
+    	try (
+    	    Connection connectionInstance = JDBCConnection.getConnection(DBConstants.databaseName, 
+                DBConstants.userName, DBConstants.password);
+            PreparedStatement preparedStatementToGetAdvertisements = 
+                connectionInstance.prepareStatement(AdvertisementQuery.getAllAdvertisementByCategoryId);) {
+    		
+    		preparedStatementToGetAdvertisements.setInt(1, categoryId);
+            	
+            ResultSet advertisementResultSet = preparedStatementToGetAdvertisements.executeQuery();
+            while (advertisementResultSet.next()) {
+            	advertisementList.add(new Advertisement(advertisementResultSet.getInt("advertisementId"), 
+            	advertisementResultSet.getString("advertisementTitle"), advertisementResultSet.getString("advertisementDESC"), categoryId));
+            }
+            return advertisementList;
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return null;
+    	}
+    }
 
+    public int deleteAdvertisementById(int advertisementId) {
+    	try (
+    	    Connection connectionInstance = JDBCConnection.getConnection(DBConstants.databaseName, 
+                DBConstants.userName, DBConstants.password);
+            PreparedStatement preparedStatementToDeleteAdvertisements = 
+                connectionInstance.prepareStatement(AdvertisementQuery.DELETE_ADVERTISEMENT_BY_ID);) {
+    		
+    		preparedStatementToDeleteAdvertisements.setInt(1, advertisementId);
+            	
+            return preparedStatementToDeleteAdvertisements.executeUpdate();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return -1;
+    	}
+    }
+    
+    public int updateAdvertisementByTitle(String advertisementTitle1, String advertisementTitle2) {
+    	try (
+    	    Connection connectionInstance = JDBCConnection.getConnection(DBConstants.databaseName, 
+                DBConstants.userName, DBConstants.password);
+            PreparedStatement preparedStatementToUpadetAdvertisements = 
+                connectionInstance.prepareStatement(AdvertisementQuery.UPDATE_ADVERTISEMENT);) {
+    		
+    		preparedStatementToUpadetAdvertisements.setString(1, advertisementTitle1);
+    		preparedStatementToUpadetAdvertisements.setString(2, advertisementTitle2);
+            	
+            return preparedStatementToUpadetAdvertisements.executeUpdate();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return -1;
+    	}
+    }
 }
