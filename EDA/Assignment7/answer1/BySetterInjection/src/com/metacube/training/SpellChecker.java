@@ -2,8 +2,8 @@ package com.metacube.training;
 
 public class SpellChecker {
 	
-    public String status;
-    public boolean state;  
+    private String status;
+    private boolean state;  
     // true for On, false for Off
     
     public void setStatus(String status) {
