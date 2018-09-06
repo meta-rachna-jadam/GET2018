@@ -2,7 +2,7 @@ package com.metacube.training;
 
 public class TextEditor {
 
-    SpellChecker spellChecker;
+    private SpellChecker spellChecker;
     
     public TextEditor(SpellChecker spellChecker) {
 		super();
