@@ -82,10 +82,17 @@ public class AdminController  {
 	}
 	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-	public String addEmployee(@RequestParam("fname") String firstName, @RequestParam("mname") String middleName, 
-			@RequestParam("lname") String lastName, @RequestParam("email") String email, @RequestParam("dob") @DateTimeFormat(pattern="yyyy-MM-dd") Date dob, 
-			@RequestParam("gender") String gender, @RequestParam("doj") @DateTimeFormat(pattern="yyyy-MM-dd") Date doj, @RequestParam("reportingMgr") int reportingMgr, 
-			@RequestParam("teamLead") int teamLead, @RequestParam("projectId") int projectId){
+	public String addEmployee(
+			@RequestParam("fname") String firstName, @RequestParam("mname") String middleName, 
+			@RequestParam("emailId") String emailId, @RequestParam("skipeId") String skipeId,
+			@RequestParam("dob") String dob, @RequestParam("gender") String gender,
+			@RequestParam("primaryContactNumber") String primaryContactNumber,
+			@RequestParam("secondaryContactNumber") String secondaryContactNumber,
+			@RequestParam("doj") String doj, @RequestParam("totalExperience") int totalExperience,
+			@RequestParam("skills") int[] skills, @RequestParam("jobTitle") int jobTitle,
+			@RequestParam("reportingMgr") int reportingMgr, @RequestParam("teamLead") int teamLead,
+			@RequestParam("projectId") int projectId, @RequestParam("role") String role,
+			@RequestParam("password") String password){
 		System.out.println("ae post");
 		return "redirect:/admin/dashboard";
 	}
