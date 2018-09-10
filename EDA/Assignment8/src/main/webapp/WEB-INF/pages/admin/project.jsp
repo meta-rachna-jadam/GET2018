@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="dashboard" method="post" enctype="multipart/form-data">
+	<form action="project" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>Description:</td>
