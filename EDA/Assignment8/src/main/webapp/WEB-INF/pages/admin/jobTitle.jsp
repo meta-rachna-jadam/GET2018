@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="dashboard" method="post">
+	<form action="jobTitle" method="post">
 		<table>
 			<tr>
 				<td>Job Title:</td>
