@@ -11,8 +11,8 @@ public interface ProjectQuery {
     String DELETE_PROJECT_BY_ID = "UPDATE project SET enabled = ? WHERE project_id = ?";
 
     String GET_ALL_PROJECTS = "SELECT project_id, description, start_date, end_date, project_logo FROM project "
-    		                + "WHERE enabled = true";;
+    		                + "WHERE enabled = true";
 
-    String GET_PROJECT_BY_ID = "SELECT project_id, description, start_date, end_date, project_logo, enabled FROM project"
+    String GET_PROJECT_BY_ID = "SELECT project_id, description, start_date, end_date, project_logo FROM project"
                               + "WHERE project_id = ?";
 }
