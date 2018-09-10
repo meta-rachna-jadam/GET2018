@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WebsiteConroller {
 	
 	@RequestMapping("/")
-    public String home()
-    {
+    public String home() {
         return "home";
     }
-
 }
