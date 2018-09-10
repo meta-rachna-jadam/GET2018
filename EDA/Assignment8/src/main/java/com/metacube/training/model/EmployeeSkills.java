@@ -24,7 +24,5 @@ public class EmployeeSkills {
 	}
 	public int getSkillId() {
 		return skillId;
-	}
-
-    
+	}   
 }
