@@ -15,4 +15,6 @@ public interface EmployeeSkillsQuery {
     		                         + "WHERE emp_skill_id = ?"; 
     
     String GET_ALL_SKILLS_PRESENT_IN_ORGANIZATION = "SELECT DISTINCT skill_code FROM employeeSkills";
+    
+    String GET_ALL_SKILLS = "SELECT emp_skill_id, emp_code, skill_code FROM employeeSkills";
 }
