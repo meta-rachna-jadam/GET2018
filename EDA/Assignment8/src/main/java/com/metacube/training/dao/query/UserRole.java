@@ -1,6 +1,6 @@
 package com.metacube.training.dao.query;
 
-public interface UserRole {
+public interface UserRoleQuery {
 
 	String CREATE_USER_ROLE = "INSERT INTO userRoles (username, role) VALUES (?, ?)";
 
