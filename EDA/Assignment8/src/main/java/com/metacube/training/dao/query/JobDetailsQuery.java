@@ -7,7 +7,7 @@ public interface JobDetailsQuery {
 
     String UPDATE_JOB_DETAILS_BY_ID = "UPDATE jobDetails SET emp_code = ?, date_of_joining = ?, "
     		                        + "total_exp = ?, job_code = ?, reporting_mgr = ?, team_lead = ?"
-    		                        + " WHERE job_detail_id = ?";
+    		                        + " curr_proj_id = ? WHERE job_detail_id = ?";
     
     String GET_JOB_DETAILS_BY_ID = "SELECT job_detail_id, emp_code, date_of_joining, total_exp, job_code, "
     		                     + "reporting_mgr, team_lead, curr_proj_id FROM jobDetails WHERE job_detail_id = ?";
