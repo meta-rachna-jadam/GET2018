@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head lang="en">
+		<title>Edit employee Details</title>
+	</head>
+	<body>
+		<div class="container">
+		        <h1>Welcome</h1>
+				<a href="searchEmployee">Search Employee</a>
+				<br />
+				<a th:href="${'edit?emailId=' + username}">Edit Profile</a>
+				<br/>
+				<a href="logout">Logout</a>
+		</div>
+	</body>
+</html>
