@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<title>Edit project Details</title>
+
+</head>
+<body>
+	<div>
+		<form th:object="${jobDetail}" th:action="@{../jobDetails}" method="post" >
+			<input type="hidden"  th:field="*{id}" />
+			<br>
+			<label>Employee Name:</label> 
+			<select th:field = "*{empCode}">
+				<option value = "0">----Select----</option>
+				<option th:each="emp : ${employees}" th:value = "${emp.id}" th:text = "${emp.firstName}"/>
+			</select>
+			<br>
+			<label>Date Of Joining:</label> 
+			<input type="date"  th:field="*{dateOfJoining}" /> 
+			<br>
+			<label>Total Experience:</label> 
+			<input type="text"  th:field="*{totalExperience}" /> 
+			<br>
+			<label>Job Code:</label> 
+			<select th:field = "*{jobCode}">
+				<option value = "0">----Select----</option>
+				<option th:each="job : ${jobTitles}" th:value = "${job.jobCode}" th:text = "${job.jobTitle}"/>
+			</select>
+			
+			<br>
+			<label>Reporting Manager Id:</label> 
+			<select th:field = "*{reportingManagerId}">
+				<option value = "0">----Select----</option>
+				<option th:each="emp : ${employees}" th:value = "${emp.id}" th:text = "${emp.firstName}"/>
+			</select>
+			<br>
+			<label>Team Leader Id:</label> 
+			<select th:field = "*{teamLeaderId}">
+				<option value = "0">----Select----</option>
+				<option th:each="emp : ${employees}" th:value = "${emp.id}" th:text = "${emp.firstName}" />
+			</select>
+			<br>
+			<label>Current Project Id:</label> 
+			<select th:field = "*{currentProjectId}">
+				<option value = "0">----Select----</option>
+				<option th:each="project : ${projects}" th:value = "${project.id}" th:text = "${project.description}"/>
+			</select>
+			<br>
+			<button type="submit" class="btn btn-primary">Save</button>
+
+		</form>
+	</div>
+</body>
+</html>
