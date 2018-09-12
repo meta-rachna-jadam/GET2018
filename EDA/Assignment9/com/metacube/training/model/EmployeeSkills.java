@@ -5,17 +5,6 @@ public class EmployeeSkills {
     private int id;
     private int employeeId;
     private int skillId;
-	public EmployeeSkills(int id, int employeeId, int skillId) {
-		super();
-		this.id = id;
-		this.employeeId = employeeId;
-		this.skillId = skillId;
-	}
-	public EmployeeSkills(int employeeId, int skillId) {
-		super();
-		this.employeeId = employeeId;
-		this.skillId = skillId;
-	}
 	public int getId() {
 		return id;
 	}
@@ -25,6 +14,13 @@ public class EmployeeSkills {
 	public int getSkillId() {
 		return skillId;
 	}
-
-    
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+	public void setSkillId(int skillId) {
+		this.skillId = skillId;
+	}
 }
