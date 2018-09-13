@@ -4,11 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.metacube.training.dao.EmployeeDAO;
-import com.metacube.training.dao.ProjectDAO;
 import com.metacube.training.model.Employee;
-import com.metacube.training.model.Project;
 
 @Service
 public class EmployeeServiceImpementation implements EmployeeService {
@@ -39,6 +36,7 @@ public class EmployeeServiceImpementation implements EmployeeService {
 
 	@Override
 	public boolean createEmployee(Employee employee) {
+		employee.setProfilePhotoUrl("D:\\HTML Pages\\Capture.PNG");
 		return employeeDAO.createEmployee(employee);
 	}
 	

@@ -1,14 +1,49 @@
 package com.metacube.training.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "address")
 public class Address {
 	
+	@Id
+	@Column(name = "address_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	/*@OneToOne
+    @JoinColumn(name="emp_code")*/
+	@Column(name = "emp_code")
 	private int emp_code;
+	
+	@Column(name = "add_line_1")
 	private String add_line_1;
+	
+	@Column(name = "add_line_2")
 	private String add_line_2;
+	
+	@Column(name = "city")
 	private String city;
+	
+	@Column(name = "state")
 	private String state;
+	
+	@Column(name = "pincode")
 	private String pincode;
+	
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", emp_code=" + emp_code + ", add_line_1="
+				+ add_line_1 + ", add_line_2=" + add_line_2 + ", city="
+				+ city +", state"+ state+ ", pincode"+ pincode + "]";
+	}
 	
 	public int getId() {
 		return id;

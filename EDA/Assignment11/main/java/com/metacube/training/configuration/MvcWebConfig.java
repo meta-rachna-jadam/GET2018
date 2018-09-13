@@ -39,7 +39,7 @@ import com.metacube.training.model.UserRole;
 public class MvcWebConfig implements WebMvcConfigurer {
 
 	@Autowired
-	Environment environment;
+	Environment env;
 
 	private final String URL = "url";
 	private final String USER = "dbuser";
@@ -82,39 +82,41 @@ public class MvcWebConfig implements WebMvcConfigurer {
 		resolver.setTemplateEngine(templateEngine());
 		registry.viewResolver(resolver);
 	}
-
+	
+	
 	@Bean
-	public LocalSessionFactoryBean getSessionFactory() {
+	  public LocalSessionFactoryBean getSessionFactory() {
 	    LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 	    factoryBean.setDataSource(dataSource());
 	    
-	    Properties properties = new Properties();
+	    Properties props = new Properties();
 	    
 	    // Setting Hibernate properties
-	    properties.put("hibernate.show_sql", environment.getProperty("hibernate.show_sql"));
-	    properties.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
+	    props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+	    props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 
-	    factoryBean.setHibernateProperties(properties);
-	    factoryBean.setAnnotatedClasses(Project.class, Employee.class, Address.class, EmployeeSkills.class,
-	    		JobDetails.class, JobTitle.class, Skills.class, UserRole.class);
+	    factoryBean.setHibernateProperties(props);
+	    factoryBean.setAnnotatedClasses(Project.class, Address.class, Employee.class, EmployeeSkills.class,
+	    		JobTitle.class, JobDetails.class, Skills.class, UserRole.class);
 	    
 	    return factoryBean;
-	}
+	  }
 
-	@Bean
-	public HibernateTransactionManager getTransactionManager() {
+	  @Bean
+	  public HibernateTransactionManager getTransactionManager() {
 	    HibernateTransactionManager transactionManager = new HibernateTransactionManager();
 	    transactionManager.setSessionFactory(getSessionFactory().getObject());
 	    return transactionManager;
-	}
+	  }
+
 
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-		driverManagerDataSource.setUrl(environment.getProperty(URL));
-		driverManagerDataSource.setUsername(environment.getProperty(USER));
-		driverManagerDataSource.setPassword(environment.getProperty(PASSWORD));
-		driverManagerDataSource.setDriverClassName(environment.getProperty(DRIVER));
+		driverManagerDataSource.setUrl(env.getProperty(URL));
+		driverManagerDataSource.setUsername(env.getProperty(USER));
+		driverManagerDataSource.setPassword(env.getProperty(PASSWORD));
+		driverManagerDataSource.setDriverClassName(env.getProperty(DRIVER));
 		return driverManagerDataSource;
 	}
 

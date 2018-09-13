@@ -1,72 +1,126 @@
 package com.metacube.training.dao;
 
 import java.util.List;
-
-import javax.sql.DataSource;
-
+import javax.persistence.TypedQuery;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.metacube.training.dao.query.EmployeeQuery;
-import com.metacube.training.dao.query.ProjectQuery;
-import com.metacube.training.mappers.EmployeeMapper;
-import com.metacube.training.mappers.ProjectMapper;
-import com.metacube.training.mappers.SearchMapper;
 import com.metacube.training.model.Employee;
+
 /**
- * To implement employee DAO methods 
+ * To implement employee DAO methods
  * @author Rachna Jadam
  *
  */
 @Repository
+@Transactional
 public class EmployeeDAOImplementation implements EmployeeDAO {
-
-	private JdbcTemplate jdbcTemplate;
+	
 	@Autowired
-	public EmployeeDAOImplementation(DataSource dataSource) {
-	    jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+	private SessionFactory sessionFactory;
+
 	@Override
 	public Employee getEmployeeById(int id) {
-		return jdbcTemplate.queryForObject(EmployeeQuery.GET_EMPLOYEE_BY_ID, new Object[] { id }, 
-			    new EmployeeMapper());
+		try {
+			TypedQuery<Employee> query = sessionFactory.getCurrentSession()
+					.createQuery(EmployeeQuery.GET_EMPLOYEE_BY_ID);
+			query.setParameter("id", id);
+			return query.getSingleResult();
+		} catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+			emptyResultDataAccessException.printStackTrace();
+			return null;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<Employee> getAllEmployees() {
-		return jdbcTemplate.query(EmployeeQuery.GET_ALL_EMPLOYEES, new EmployeeMapper());
+		TypedQuery<Employee> query = sessionFactory.getCurrentSession()
+				.createQuery(EmployeeQuery.GET_ALL_EMPLOYEES);
+		return query.getResultList();
 	}
 
 	@Override
 	public boolean deleteEmployeeById(Employee employee) {
-		return jdbcTemplate.update(EmployeeQuery.DELETE_EMPLOYEE_BY_ID, employee.getId()) > 0;
+		try {
+			TypedQuery<Employee> query = sessionFactory.getCurrentSession()
+					.createQuery(EmployeeQuery.DELETE_EMPLOYEE_BY_ID);
+			query.setParameter("id", employee.getId());
+			return query.executeUpdate() > 0;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean updateEmployee(Employee employee) {
-		return jdbcTemplate.update(EmployeeQuery.UPDATE_EMPLOYEE_BY_ID, 
-		     employee.getFirstName(), employee.getMiddelName(), employee.getDob(), employee.getGender(),
-			 employee.getPrimaryContactNumber(), employee.getSecondaryContactNumber(), employee.getEmailId(),
-			 employee.getSkypeId(), employee.getId()) > 0;
+		try {
+			TypedQuery<Employee> query = sessionFactory.getCurrentSession()
+					.createQuery(EmployeeQuery.UPDATE_EMPLOYEE_BY_ID);
+			query.setParameter("first_name", employee.getFirstName());
+			query.setParameter("middle_name", employee.getMiddelName());
+			query.setParameter("dob", employee.getDob());
+			query.setParameter("gender", employee.getGender());
+			query.setParameter("primary_contact_no",
+					employee.getPrimaryContactNumber());
+			query.setParameter("secondary_contact_no",
+					employee.getSecondaryContactNumber());
+			query.setParameter("email_id", employee.getEmailId());
+			query.setParameter("skype_id", employee.getSkypeId());
+			query.setParameter("id", employee.getId());
+			return query.executeUpdate() > 0;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean createEmployee(Employee employee) {
-		return jdbcTemplate.update(EmployeeQuery.CREATE_EMPLOYEE, 
-			     employee.getFirstName(), employee.getMiddelName(), employee.getDob(), employee.getGender(),
-				 employee.getPrimaryContactNumber(), employee.getSecondaryContactNumber(), employee.getEmailId(),
-				 employee.getSkypeId(), employee.getPassword()) > 0;
-	}
-	@Override
-	public Employee getEmployeeByEmailId(String emailId) {
-		return jdbcTemplate.queryForObject(EmployeeQuery.GET_EMPLOYEE_ID_BY_EMAIL_ID, new Object[] { emailId }, 
-			    new EmployeeMapper());
-	}
-	@Override
-	public Employee searchByName(String name) {
-		return jdbcTemplate.queryForObject(EmployeeQuery.SEARCH_EMPLOYEE_BY_NAME, new Object[] { name }, 
-			    new SearchMapper());
+		try {
+			sessionFactory.getCurrentSession().save(employee);
+			return true;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return false;
+		}
 	}
 
+	@Override
+	public Employee getEmployeeByEmailId(String emailId) {
+		try {
+			TypedQuery<Employee> query = sessionFactory.getCurrentSession()
+					.createQuery(EmployeeQuery.GET_EMPLOYEE_ID_BY_EMAIL_ID);
+			query.setParameter("email_id", emailId);
+			return query.getSingleResult();
+		} catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+			emptyResultDataAccessException.printStackTrace();
+			return null;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Employee searchByName(String name) {
+		try {
+			TypedQuery<Employee> query = sessionFactory.getCurrentSession()
+					.createQuery(EmployeeQuery.SEARCH_EMPLOYEE_BY_NAME);
+			query.setParameter("first_name", name);
+			return query.getSingleResult();
+		} catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+			emptyResultDataAccessException.printStackTrace();
+			return null;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return null;
+		}
+	}
 }

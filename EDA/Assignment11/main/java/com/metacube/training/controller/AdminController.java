@@ -5,12 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.metacube.training.model.Employee;
 import com.metacube.training.model.EmployeeSkills;
 import com.metacube.training.model.JobDetails;
@@ -103,7 +101,7 @@ public class AdminController {
 	@RequestMapping(path = "skills", method = RequestMethod.POST)
 	public String saveSkill(@ModelAttribute("skill") Skills skill) {
 		if (skill != null && skill.getId() == 0) {
-			System.out.println("Skills if");
+			System.out.println("Skills if "+skill.getName());
 			skillsService.createSkills(skill);
 		} else {
 			System.out.println("Skills else");

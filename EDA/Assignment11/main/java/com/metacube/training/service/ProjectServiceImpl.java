@@ -39,7 +39,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public boolean createProject(Project project) {
-		
+		project.setLogo("D:\\HTML Pages\\Capture.PNG");
 		return projectDAO.createProject(project);
 	}
 

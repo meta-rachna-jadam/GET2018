@@ -1,51 +1,82 @@
 package com.metacube.training.dao;
 
 import java.util.List;
-
-import javax.sql.DataSource;
-
+import javax.persistence.TypedQuery;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import com.metacube.training.dao.query.EmployeeSkillsQuery;
-import com.metacube.training.mappers.EmployeeSkillsMapper;
 import com.metacube.training.model.EmployeeSkills;
 
+
 @Repository
+@Transactional
 public class EmployeeSkillsDAOImplementaion implements EmployeeSkillsDAO {
 
-	private JdbcTemplate jdbcTemplate;
-
 	@Autowired
-	public EmployeeSkillsDAOImplementaion(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+	private SessionFactory sessionFactory;
 
 	@Override
 	public EmployeeSkills getEmployeeSkillsById(int id) {
-		return jdbcTemplate.queryForObject(EmployeeSkillsQuery.GET_EMPLOYEE_SKILLS_BY_ID, 
-				new Object[] { id }, new EmployeeSkillsMapper());
+		try {
+			TypedQuery<EmployeeSkills> query = sessionFactory.getCurrentSession()
+					.createQuery(EmployeeSkillsQuery.GET_EMPLOYEE_SKILLS_BY_ID);
+			query.setParameter("id", id);
+			return query.getSingleResult();
+		} catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+			emptyResultDataAccessException.printStackTrace();
+			return null;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<EmployeeSkills> getAllEmployeeSkills() {
-		return jdbcTemplate.query(EmployeeSkillsQuery.GET_ALL_SKILLS, new EmployeeSkillsMapper());
+		TypedQuery<EmployeeSkills> query = sessionFactory.getCurrentSession()
+				.createQuery(EmployeeSkillsQuery.GET_ALL_SKILLS);
+		return query.getResultList();
 	}
 
 	@Override
 	public boolean deleteEmployeeSkills(EmployeeSkills employeeSkills) {
-		return jdbcTemplate.update(EmployeeSkillsQuery.DELETE_EMPLOYEE_SKILLS_BY_ID, employeeSkills.getId()) > 0;
+		try {
+			TypedQuery<EmployeeSkills> query = sessionFactory.getCurrentSession()
+					.createQuery(EmployeeSkillsQuery.DELETE_EMPLOYEE_SKILLS_BY_ID);
+			query.setParameter("id", employeeSkills.getId());
+			return query.executeUpdate() > 0;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean updateEmployeeSkills(EmployeeSkills employeeSkills) {
-		return jdbcTemplate.update(EmployeeSkillsQuery.UPDATE_EMPLOYEE_SKILLS_BY_ID, 
-				employeeSkills.getEmployeeId(), employeeSkills.getSkillId(), employeeSkills.getId()) > 0;
+		try {
+			TypedQuery<EmployeeSkills> query = sessionFactory.getCurrentSession()
+					.createQuery(EmployeeSkillsQuery.UPDATE_EMPLOYEE_SKILLS_BY_ID);
+			query.setParameter("emp_code", employeeSkills.getEmployeeId());
+			query.setParameter("skill_code", employeeSkills.getSkillId());
+			query.setParameter("id", employeeSkills.getId());
+			return query.executeUpdate() > 0;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean createEmployeeSkills(EmployeeSkills employeeSkills) {
-		return jdbcTemplate.update(EmployeeSkillsQuery.CREATE_EMPLOYEE_SKILLS, 
-			    employeeSkills.getEmployeeId(), employeeSkills.getSkillId()) > 0;
+		try {
+			sessionFactory.getCurrentSession().save(employeeSkills);
+			return true;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return false;
+		}
 	}
 }
