@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.metacube.training.model.Employee;
 import com.metacube.training.model.EmployeeSkills;
 import com.metacube.training.model.JobDetails;
@@ -42,6 +43,8 @@ public class AdminController {
 	@Autowired
 	private UserRoleService userRoleService;
 
+	//For login 
+	
 	@GetMapping("/login")
 	public String login() {
 		return "admin/login";
@@ -300,6 +303,7 @@ public class AdminController {
 		return "redirect:/admin/employeeSkills";
 	}
 
+	//For Logout
 	@RequestMapping("/logout")
 	public String logout() {
 		return "redirect:/";

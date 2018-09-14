@@ -18,5 +18,5 @@ public interface EmployeeService {
 	
 	Employee getEmployeeByEmailId(String emailId);
 	
-	Employee searchByName(String Name);
+	List<Employee> searchByName(String Name);
 }

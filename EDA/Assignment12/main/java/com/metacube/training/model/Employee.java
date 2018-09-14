@@ -1,19 +1,22 @@
 package com.metacube.training.model;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
+
+/**
+ * Entity class map with employee table of database
+ * @author Rachna Jadam
+ *
+ */
 
 @Entity
 @Table(name = "employee")
@@ -30,11 +33,6 @@ public class Employee {
 	@Column(name = "middle_name")
     private String middelName;
 	
-	@OneToOne(mappedBy = "employeeId")
-	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-	private EmployeeSkills employeeSkills;
-	
-
 	@Column(name = "dob")
 	@DateTimeFormat(pattern= "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)

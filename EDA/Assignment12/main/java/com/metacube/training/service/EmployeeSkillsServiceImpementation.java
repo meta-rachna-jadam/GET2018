@@ -4,40 +4,61 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.metacube.training.dao.EmployeeSkillsDAO;
 import com.metacube.training.model.EmployeeSkills;
+import com.metacube.training.repository.EmployeeSkillsRepository;
+
+/**
+ * class provide services related to employee skills
+ * @author Rachna Jadam
+ *
+ */
 
 @Service
 public class EmployeeSkillsServiceImpementation implements EmployeeSkillsService {
 
 	@Autowired
-	private EmployeeSkillsDAO employeeSkillsDAO;
+	private EmployeeSkillsRepository<EmployeeSkills> employeeSkillsRepository;
 	
+	/**
+	 * To get employee skills by id
+	 */
 	@Override
 	public EmployeeSkills getEmployeeSkillsById(int id) {
-		return employeeSkillsDAO.getEmployeeSkillsById(id);
+		return employeeSkillsRepository.findOne(id);
 	}
 
+	/**
+	 * To get employee skills list
+	 */
 	@Override
 	public List<EmployeeSkills> getAllEmployeeSkills() {
-		return employeeSkillsDAO.getAllEmployeeSkills();
+		return employeeSkillsRepository.findAll();
 	}
 
+	/**
+	 * To delete employee skills by id
+	 */
 	@Override
 	public boolean deleteEmployeeSkills(int id) {
-		EmployeeSkills employeeSkills = employeeSkillsDAO.getEmployeeSkillsById(id);
-		return employeeSkillsDAO.deleteEmployeeSkills(employeeSkills);
+		employeeSkillsRepository.delete(id);
+		return true;
 	}
 
+	/**
+	 * To update employee skills
+	 */
 	@Override
 	public boolean updateEmployeeSkills(EmployeeSkills employeeSkills) {
-		return employeeSkillsDAO.updateEmployeeSkills(employeeSkills);
+		employeeSkillsRepository.saveAndFlush(employeeSkills);
+		return true;
 	}
 
+	/**
+	 * To create employee skills entry in database
+	 */
 	@Override
 	public boolean createEmployeeSkills(EmployeeSkills employeeSkills) {
-		return employeeSkillsDAO.createEmployeeSkills(employeeSkills);
+		employeeSkillsRepository.save(employeeSkills);
+		return true;
 	}
-
 }

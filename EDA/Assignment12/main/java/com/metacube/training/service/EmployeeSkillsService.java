@@ -2,6 +2,7 @@ package com.metacube.training.service;
 
 import java.util.List;
 
+import com.metacube.training.model.Employee;
 import com.metacube.training.model.EmployeeSkills;
 
 public interface EmployeeSkillsService {
@@ -15,4 +16,5 @@ public interface EmployeeSkillsService {
 	boolean updateEmployeeSkills(EmployeeSkills employeeSkills);
 
 	boolean createEmployeeSkills(EmployeeSkills employeeSkills);
+	
 }

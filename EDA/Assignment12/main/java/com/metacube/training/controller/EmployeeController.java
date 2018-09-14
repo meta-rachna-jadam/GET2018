@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metacube.training.model.Employee;
-import com.metacube.training.model.Project;
 import com.metacube.training.service.EmployeeService;
 
 @Controller
@@ -20,6 +19,8 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 
+	//for login
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "employee/login";
@@ -31,6 +32,8 @@ public class EmployeeController {
 
 		return new ModelAndView("employee/dashboard", "username", username);
 	}
+	
+	//for edit employee
 	
 	@RequestMapping(path = "/edit", method = RequestMethod.GET)
 	public String editEmployee(Model model, @RequestParam("emailId") String emailId) {
@@ -45,6 +48,8 @@ public class EmployeeController {
 		return new ModelAndView("employee/dashboard", "username", employee.getEmailId());
 	}
 
+	//for logout
+	
 	@RequestMapping("/logout")
 	public String logout() {
 		return "redirect:/";

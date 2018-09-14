@@ -7,6 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entity class map with userRole table of database
+ * @author Rachna Jadam
+ *
+ */
+
 @Entity
 @Table(name = "userRoles")
 public class UserRole {
@@ -45,6 +51,4 @@ public class UserRole {
 	public void setRole(String role) {
 		this.role = role;
 	}
-    
-    
 }

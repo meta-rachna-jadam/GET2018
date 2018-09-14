@@ -1,9 +1,8 @@
 package com.metacube.training.configuration;
 
 import java.util.Properties;
-
 import javax.sql.DataSource;
-
+import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -11,9 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -22,20 +22,12 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
-import com.metacube.training.model.Address;
-import com.metacube.training.model.Employee;
-import com.metacube.training.model.EmployeeSkills;
-import com.metacube.training.model.JobDetails;
-import com.metacube.training.model.JobTitle;
-import com.metacube.training.model.Project;
-import com.metacube.training.model.Skills;
-import com.metacube.training.model.UserRole;
-
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.metacube.training")
 @EnableTransactionManagement
 @PropertySource("classpath:database.properties")
+@EnableJpaRepositories("com.metacube.training.repository")
 public class MvcWebConfig implements WebMvcConfigurer {
 
 	@Autowired
@@ -83,33 +75,35 @@ public class MvcWebConfig implements WebMvcConfigurer {
 		registry.viewResolver(resolver);
 	}
 	
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		entityManagerFactoryBean.setDataSource(dataSource());
+		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistence.class);
+		entityManagerFactoryBean.setPackagesToScan(env.getProperty("entitymanager.packages.to.scan"));
+		entityManagerFactoryBean.setJpaProperties(hibProperties());
+
+		return entityManagerFactoryBean;
+	}
+	
+	  
+	 
+	private Properties hibProperties() {
+		Properties properties = new Properties();
+		properties.put("hibernate.dialect",	env.getProperty("hibernate.dialect"));
+		properties.put("hibernate.show_sql",env.getProperty("hibernate.show_sql"));
+
+		return properties;
+	}
 	
 	@Bean
-	  public LocalSessionFactoryBean getSessionFactory() {
-	    LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-	    factoryBean.setDataSource(dataSource());
-	    
-	    Properties props = new Properties();
-	    
-	    // Setting Hibernate properties
-	    props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-	    props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+	public JpaTransactionManager transactionManager() {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 
-	    factoryBean.setHibernateProperties(props);
-	    factoryBean.setAnnotatedClasses(Project.class, Address.class, Employee.class, EmployeeSkills.class,
-	    		JobTitle.class, JobDetails.class, Skills.class, UserRole.class);
-	    
-	    return factoryBean;
-	  }
-
-	  @Bean
-	  public HibernateTransactionManager getTransactionManager() {
-	    HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-	    transactionManager.setSessionFactory(getSessionFactory().getObject());
-	    return transactionManager;
-	  }
-
-
+		return transactionManager;
+	}
+	
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();

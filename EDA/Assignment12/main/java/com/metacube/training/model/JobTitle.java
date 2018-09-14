@@ -7,6 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entity class map with jobTitle table of database
+ * @author Rachna Jadam
+ *
+ */
+
 @Entity
 @Table(name = "jobTitle")
 public class JobTitle {

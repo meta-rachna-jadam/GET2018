@@ -4,39 +4,61 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.metacube.training.dao.SkillsDAO;
 import com.metacube.training.model.Skills;
+import com.metacube.training.repository.SkillsRepository;
+
+/**
+ * class provide services related to skills
+ * @author Rachna Jadam
+ *
+ */
 
 @Service
 public class SkillsServiceImplementation implements SkillsService {
 
 	@Autowired
-	private SkillsDAO skillsDAO;
+	private SkillsRepository<Skills> skillsRepository;
 
+	/**
+	 * To get skills by id
+	 */
 	@Override
 	public Skills getSkillsById(int id) {
-		return skillsDAO.getSkillsById(id);
+		return skillsRepository.findOne(id);
 	}
 
+	/**
+	 * To get skills list
+	 */
 	@Override
 	public List<Skills> getAllSkills() {
-		return skillsDAO.getAllSkills();
+		return skillsRepository.findAll();
 	}
 
+	/**
+	 * To delete skills by id
+	 */
 	@Override
 	public boolean deleteSkills(int id) {
-		Skills skills = skillsDAO.getSkillsById(id);
-		return skillsDAO.deleteSkills(skills);
+		skillsRepository.delete(id);
+		return true;
 	}
 
+	/**
+	 * To update skills
+	 */
 	@Override
 	public boolean updateSkills(Skills skills) {
-		return skillsDAO.updateSkills(skills);
+		skillsRepository.saveAndFlush(skills);
+		return true;
 	}
 
+	/**
+	 * To create skills entry in database 
+	 */
 	@Override
 	public boolean createSkills(Skills skills) {
-		return skillsDAO.createSkills(skills);
+		skillsRepository.save(skills);
+		return true;
 	}
 }

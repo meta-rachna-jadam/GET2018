@@ -7,20 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.springframework.format.annotation.DateTimeFormat;
+
+/**
+ * Entity class map with jobDetails table of database
+ * @author Rachna Jadam
+ *
+ */
 
 @Entity
 @Table(name = "jobDetails")
 public class JobDetails {
 
-	/*@OneToOne
-    @JoinColumn(name="emp_code")*/
+	
 	@Column(name = "emp_code")
 	private int empCode;
     
@@ -37,23 +39,15 @@ public class JobDetails {
     @Column(name = "total_exp")
     private int totalExperience;
     
-    /*@OneToOne
-    @JoinColumn(name="job_code")*/
     @Column(name = "job_code")
     private int jobCode;
     
-    /*@OneToOne
-    @JoinColumn(name="reporting_mgr")*/
     @Column(name = "reporting_mgr")
     private int reportingManagerId;
     
-    /*@OneToOne
-    @JoinColumn(name="team_lead")*/
     @Column(name = "team_lead")
     private int teamLeaderId;
     
-    /*@OneToOne
-    @JoinColumn(name="curr_proj_id")*/
     @Column(name = "curr_proj_id")
     private int currentProjectId;
     

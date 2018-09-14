@@ -6,9 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.Cascade;
+/**
+ * Entity class map with skills table of database
+ * @author Rachna Jadam
+ *
+ */
 
 @Entity
 @Table(name = "skills")
@@ -21,10 +24,6 @@ public class Skills {
 	
 	@Column(name = "skill_name")
     private String name;
-	
-	@OneToOne(mappedBy = "employeeSkillsId")
-	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-	private EmployeeSkills employeeSkills;
 	
 	@Override
 	public String toString() {

@@ -5,12 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+/**
+ * Entity class map with employeeSkills table of database
+ * @author Rachna Jadam
+ *
+ */
 
 @Entity
 @Table(name = "employeeSkills")
@@ -21,18 +22,9 @@ public class EmployeeSkills {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    /*@OneToOne
-    @JoinColumn(name="emp_code")*/
-	/*@Column(name = "emp_code")
-    private int employeeId;*/
-	
 	@Column(name = "emp_code")
-	@GenericGenerator(name = "gen", strategy = "foreign", 
-			parameters = { @Parameter(name = "property", value = "employeeSkillsId") })
-    private long employeeId;
-    
-    /*@ManyToMany
-    @JoinColumn(name="skill_code")*/
+    private int employeeId;
+	
 	@Column(name = "skill_code")
     private int skillId;
     
