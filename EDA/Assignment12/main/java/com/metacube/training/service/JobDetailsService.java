@@ -2,6 +2,7 @@ package com.metacube.training.service;
 
 import java.util.List;
 
+import com.metacube.training.model.Employee;
 import com.metacube.training.model.JobDetails;
 
 public interface JobDetailsService {
@@ -15,4 +16,6 @@ public interface JobDetailsService {
 	boolean updateJobDetails(JobDetails jobDetails);
 
 	boolean createJobDetails(JobDetails jobDetails);
+	
+	List<Employee> searchEmployeeByProject(String description);
 }
