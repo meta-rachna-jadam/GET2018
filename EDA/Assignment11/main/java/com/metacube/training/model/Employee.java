@@ -1,12 +1,18 @@
 package com.metacube.training.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,11 +36,6 @@ public class Employee {
 	@Column(name = "middle_name")
     private String middelName;
 	
-	@OneToOne(mappedBy = "employeeId")
-	@Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-	private EmployeeSkills employeeSkills;
-	
-
 	@Column(name = "dob")
 	@DateTimeFormat(pattern= "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
@@ -64,6 +65,8 @@ public class Employee {
 	
 	@Column(name = "enabled")
     private boolean enabled;
+	
+	
     
     @Override
 	public String toString() {
