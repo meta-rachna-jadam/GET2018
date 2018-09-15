@@ -1,12 +1,16 @@
 package com.metacube.training.dao;
 
 import java.util.List;
+
 import javax.persistence.TypedQuery;
+
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.metacube.training.dao.query.EmployeeQuery;
 import com.metacube.training.model.Employee;
 
@@ -120,6 +124,23 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 			return null;
 		} catch (Exception exception) {
 			exception.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
+	public List<Employee> searchBySkills(String skill) {
+		try {
+			String search = "select e from EmployeeSkills es inner join "
+					+ "es.employee e inner join es.skills s where "
+					+ "s.name = :skill_name";
+			TypedQuery<Employee> query = sessionFactory.getCurrentSession()
+					.createQuery(search);
+			query.setParameter("skill_name", skill);
+			return query.getResultList();
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return null;
 		}
 	}
