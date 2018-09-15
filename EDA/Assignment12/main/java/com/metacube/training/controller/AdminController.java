@@ -256,6 +256,8 @@ public class AdminController {
 			@RequestParam("searchValue") String searchValue) {
 		if ("By Name".equals(searchBy)) {
 			model.addAttribute("employee", employeeService.searchByName(searchValue));
+		} else if ("By Project".equals(searchBy)) {
+			model.addAttribute("employee", jobDetailsService.searchEmployeeByProject(searchValue));
 		}
 		return "admin/employees";
 	}
