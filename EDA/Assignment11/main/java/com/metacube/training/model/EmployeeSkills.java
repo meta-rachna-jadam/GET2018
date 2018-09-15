@@ -1,16 +1,14 @@
 package com.metacube.training.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "employeeSkills")
@@ -21,20 +19,19 @@ public class EmployeeSkills {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    /*@OneToOne
-    @JoinColumn(name="emp_code")*/
-	/*@Column(name = "emp_code")
-    private int employeeId;*/
-	
 	@Column(name = "emp_code")
-	@GenericGenerator(name = "gen", strategy = "foreign", 
-			parameters = { @Parameter(name = "property", value = "employeeSkillsId") })
-    private long employeeId;
-    
-    /*@ManyToMany
-    @JoinColumn(name="skill_code")*/
-	@Column(name = "skill_code")
+    private int employeeId;
+	
+    @Column(name = "skill_code")
     private int skillId;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "emp_code", insertable = false, updatable = false)
+    private Employee employee;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "skill_code", insertable = false, updatable = false)
+    private Skills skills;
     
     @Override
 	public String toString() {
