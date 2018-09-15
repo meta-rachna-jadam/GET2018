@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.metacube.training.dao.EmployeeDAO;
 import com.metacube.training.model.Employee;
 
@@ -48,5 +49,10 @@ public class EmployeeServiceImpementation implements EmployeeService {
 	@Override
 	public Employee searchByName(String name) {
 		return employeeDAO.searchByName(name);
+	}
+	
+	@Override
+	public List<Employee> searchBySkills (String skill) {
+		return employeeDAO.searchBySkills(skill);
 	}
 }
