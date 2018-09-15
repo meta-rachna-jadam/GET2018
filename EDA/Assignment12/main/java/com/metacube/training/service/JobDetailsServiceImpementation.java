@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.metacube.training.model.Employee;
 import com.metacube.training.model.JobDetails;
 import com.metacube.training.repository.JobDetailsRepository;
 
@@ -60,5 +62,10 @@ public class JobDetailsServiceImpementation implements JobDetailsService {
 	public boolean createJobDetails(JobDetails jobDetails) {
 		jobDetailsRepository.save(jobDetails);
 		return true;
+	}
+	
+	@Override
+	public List<Employee> searchEmployeeByProject(String description) {
+		return jobDetailsRepository.searchEmployeeByProject(description);
 	}
 }
