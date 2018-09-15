@@ -19,4 +19,6 @@ public interface EmployeeDAO {
 	Employee getEmployeeByEmailId(String emailId);
 	
 	Employee searchByName(String name);
+	
+	List<Employee> searchBySkills (String skill);
 }
