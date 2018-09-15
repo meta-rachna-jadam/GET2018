@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.metacube.training.dao.EmployeeSkillsDAO;
+import com.metacube.training.model.Employee;
 import com.metacube.training.model.EmployeeSkills;
 
 @Service
