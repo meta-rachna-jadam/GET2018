@@ -36,13 +36,13 @@ public class AddEmployeeServlet extends HttpServlet {
 		String emailId = request.getParameter("emailId").trim();
 		int employeeDetailsAddedOrUpdate = -1;
 		int age = Integer.parseInt(request.getParameter("age").trim());
-		EmployeeDAO EmployeeDAO = new EmployeeDAO();
+		EmployeeDAO employeeDAO = new EmployeeDAO();
 		Employee employee = new Employee(firstName, lastName, emailId, age);
 		if ("add".equals(queryType)) {
-			employeeDetailsAddedOrUpdate = EmployeeDAO.addEmployee(employee);
+			employeeDetailsAddedOrUpdate = employeeDAO.addEmployee(employee);
 		} else if ("update".equals(queryType)) {
 			int id = Integer.parseInt(request.getParameter("employeeId"));
-			employeeDetailsAddedOrUpdate = EmployeeDAO.updateEmployeeById(id,employee);
+			employeeDetailsAddedOrUpdate = employeeDAO.updateEmployeeById(id,employee);
 		}
 		
 		PrintWriter out = response.getWriter();
