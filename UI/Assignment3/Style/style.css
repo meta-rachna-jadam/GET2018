@@ -1,39 +1,43 @@
-#main > div{
+#div1,
+#div2,
+#div3,
+#div4{
     width: 100px;
     height: 100px;
     display: inline-block;
     position: absolute;
     /*transform: 5s all ease;*/
     /*animation-delay: 2s;*/
+    animation: move 2s infinite;
     animation-timing-function: ease;
 
 }
 #div1 {
     left: 100px;
     top: 100px;
-    animation: move1 2s infinite;
     background-color: blueviolet;
+    animation-delay: 0.5s;
 }
 #div2 {
     left: 100px;
     top: 200px;
-    animation: move2 2s infinite;
     background-color: yellow;
+    animation-delay: 1s;
 }
 
 #div3 {
     left: 200px;
     top: 100px;
-    animation: move3 2s infinite;
+    animation-delay: 1.5s;
     background-color: hotpink;
 }
 #div4 {
     left: 200px;
     top: 200px;
-    animation: move4 2s infinite;
+    animation-delay: 2s;
     background-color: dodgerblue;
 }
-@keyframes move1{
+@keyframes move{
     0%{
         left: 100px;
         top: 100px;
@@ -53,71 +57,5 @@
     100%{
         left: 100px;
         top: 100px;
-    }
-}
-@keyframes move2{
-    0%{
-        left: 100px;
-        top: 200px;
-    }
-    25%{
-        left: 200px;
-        top: 200px;
-    }
-    50% {
-        left: 200px;
-        top: 100px;
-    }
-    75%{
-        left: 100px;
-        top: 100px;
-    }
-    100%{
-        left: 100px;
-        top: 200px;
-    }
-}
-@keyframes move3{
-    0% {
-        left: 200px;
-        top: 100px;
-    }
-    25%{
-        left: 100px;
-        top: 100px;
-    }
-    50%{
-        left: 100px;
-        top: 200px;
-    }
-    75%{
-        left: 200px;
-        top: 200px;
-    }
-    100%{
-        left: 200px;
-        top: 100px;
-    }
-}
-@keyframes move4{
-    0% {
-        left: 200px;
-        top: 200px;
-    }
-    25%{
-        left: 200px;
-        top: 100px;
-    }
-    50%{
-        left: 100px;
-        top: 100px;
-    }
-    75%{
-        left: 100px;
-        top: 200px;
-    }
-    100%{
-        left: 200px;
-        top: 200px;
     }
 }
