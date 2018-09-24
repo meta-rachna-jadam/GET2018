@@ -22,18 +22,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // Http Basic, Form Based, Remember Me	
     	http
     	.authorizeRequests().antMatchers("/admin/*").access("hasRole('ROLE_USER')")
-    	//.anyRequest()
-    	//.authenticated()
     	.and()
 	    	.formLogin()
 	    	.loginPage("/login") 
-	        /*.loginProcessingUrl("/perform_login")
-	        .defaultSuccessUrl("/home.html",true) */
-	        .failureUrl("/login.html?error=true")
+	        .loginProcessingUrl("/Login") 
+	        .defaultSuccessUrl("/admin/home")
+	        .usernameParameter("username")
+	        .passwordParameter("password")
+	        .failureUrl("/error")
         .and()
 			.logout().logoutSuccessUrl("/login?logout")
+			.logoutUrl("/Logout")
 		.and()
 			.csrf();
-        ;
-    }			
+    }
 }
