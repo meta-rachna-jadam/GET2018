@@ -16,25 +16,25 @@
     left: 100px;
     top: 100px;
     background-color: blueviolet;
-    animation-delay: 0.5s;
+    animation-delay: -2s;
 }
 #div2 {
     left: 100px;
     top: 200px;
     background-color: yellow;
-    animation-delay: 1s;
+    animation-delay: -1.5s;
 }
 
 #div3 {
     left: 200px;
     top: 100px;
-    animation-delay: 1.5s;
+    animation-delay: -0.5s;
     background-color: hotpink;
 }
 #div4 {
     left: 200px;
     top: 200px;
-    animation-delay: 2s;
+    animation-delay: 0s;
     background-color: dodgerblue;
 }
 @keyframes move{
