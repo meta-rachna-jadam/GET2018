@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment 4</title>
+    </head>
+    <body>
+        <canvas id="myCanvasForDiag4" width="100" height="100"></canvas>
+        <script>
+            var canvas = document.getElementById('myCanvasForDiag4');
+            var contextForCircle = canvas.getContext('2d');
+            var contextForPolygon = canvas.getContext('2d');
+            contextForCircle.beginPath();
+            contextForCircle.arc(50, 50, 40, 0, 2 * Math.PI);
+            contextForCircle.fillStyle = '#f9d936';
+            contextForCircle.fill();
+            
+            contextForPolygon.fillStyle = 'white';
+            contextForPolygon.beginPath();
+            contextForPolygon.moveTo(45, 45);
+            contextForPolygon.lineTo(20, 45);
+            contextForPolygon.lineTo(20, 55);
+            contextForPolygon.lineTo(45, 55);
+            contextForPolygon.lineTo(45, 80);
+            contextForPolygon.lineTo(55, 80);
+            contextForPolygon.lineTo(55, 55);
+            contextForPolygon.lineTo(80, 55);
+            contextForPolygon.lineTo(80, 45);
+            contextForPolygon.lineTo(55, 45);
+            contextForPolygon.lineTo(55, 20);
+            contextForPolygon.lineTo(45, 20);
+            contextForPolygon.closePath();
+            contextForPolygon.fill();
+        </script>
+    </body>
+</html>
+   
