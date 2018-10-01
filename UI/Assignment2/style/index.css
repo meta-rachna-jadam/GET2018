@@ -1,260 +1,265 @@
-body{
+*{
+    font-family: sans-serif; 
+}
+body {
     padding: 0px;
     margin: 0px;
+    background-image: url(../images/bodybg.png);
+}
+h1 {
+    color: #4876FF;
 }
 a{
     text-decoration: none;
     color: white;
-    margin-left: 20px;
+    margin-left: 10px;
 }
-ul{
-    list-style: none;
-    text-decoration: none;
-}
-li{
-    text-decoration: none;
-    color: white;
+#header li,
+#footer li{
     display: inline-block;
 }
 #header {
+    display: flex;
+    justify-content: space-around;
     background-image: url(../images/homebg.png);
-    width: 100%;
-}
-
-#header-menu,
-#footer-menu{
-    display: flex;
-    list-style: none;
-    width: 35%;
-    display: inline-block;
-    padding-left: 5%;
-}
-#header-link,
-#footer-link{
-    display: flex;
-    list-style: none;
-    display: inline-block;
-    width: 25%;
-    margin-left: 30px;
-}
-#header-logo,
-#footer-logo{
-    width: 25%;
-    display: inline-block;
-    margin-right: 100px; 
-}
-#header-logo img,
-#footer-logo img{
-    margin-top: 20px;
-    height="15px";
-}
-#logoImg{
-    margin-left: 150px;
+    align-items: center;
 }
 #cover {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    color: white;
     background-image: url(../images/homebg.png);
     background-size: cover;
-    width: 100%;  
-    padding-top: 40px;
-    padding-bottom: 100px;
-    display: flex;
-    align-items: flex-start;
+    padding:150px 0px;  
 }
-#cover-heading > a {
-    margin-top: 20px;
-    width: 150px;
-    display: inline-block;
-    text-align: center;
-    height: 35px;
+#cover-heading h1{
+    color: white;
+    font-size: 50px;
     line-height: 30px;
-    font-size: 70%;
-    padding: 2%;
-    border-radius: 10px;
 }
-.download {
+#cover-heading > h1:nth-of-type(2) {
+    margin-bottom: 100px;
+}
+#cover-heading a{
+    padding: 20px;
+    border-radius: 5px;
+}
+#cover-heading a:nth-of-type(1){
     background-color: #f9682a;
 }
-.fetures {
+#cover-heading a:nth-of-type(2){
     background-color: #1440ad;
 }
-#cover-heading {
-    width: 40%;
-    color: white;
-    /*font-family: 'Comic Sans MS';*/
-    text-align: center;
-    text-align: left;
-    padding-left: 150px;
-    padding-top: 50px;
-    font-size: 25px;
-    line-height: 20px;
-}
-#cover-img{
-     width: 50%;
-     text-align: center;
-}
-
-.features-img img {
-    width: 80px;
-    margin-left: 50px
-}
-#perfect-features-head,
-#screenshots-header,
-#reviews-heading
-{
-    text-align: center;
-    line-height: 20px;
-    margin-top: 80px;
-}
-#perfect-features-head > h1,
-#screenshots-header > h1,
-#reviews-heading > h1
-{
-    color: #4876FF;
+#cover-img img{
+    width: 80%;
 }
 #perfect-features-head > p,
 #screenshots-header > p,
 #reviews-heading > p,
 #footer-bottom > p{
     color: gray;
-}
-.features-disc {
-    display: inline-block;
-}
-.features div {
-    display: inline-block;
-}
-.features {
-    display: inline-block;
-    box-sizing: border-box;
-}
-.features-disc{
-    text-align: justify;
-    width: 250px;
-    text-align: justify
-}
-#perfect-features {
-    margin: auto;
-    width: 80%;
-}
-.perfect-features-img img{
-    width: 100%;
-}
-.perfect-features-img {
-    width: 60%;
-    margin: auto;
-    margin-top: 80px;
-}
-.screenshots-img {
-    width: 40%;
     text-align: center;
 }
-.screenshots-img > img {
-    width: 50%;
+#perfect-features,
+#screenshots{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+#features,
+.screenshots-description,
+.review-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#features{
+    width: 70%;
+    margin-top: 30px;   
+}
+.features-img{
+    width: 20%;
+}
+.features-img img{
+    max-width: 100%;
+} 
+.features-disc{
+    width:60%;
+}
+#perfect-features-img{
+    margin-top: 20px;
+    position: relative;
+}
+#perfect-features-img img:nth-child(1){
+    z-index: -1;
+    position: absolute;
+    left: -150px;
+    top: 70px;
+}
+#perfect-features-img img:nth-child(3){
+    z-index: -1;
+    position: absolute;
+    right: -170px;
+    top: 70px;
+}
+.screenshots-description{
+    width: 70%;
+    margin-top: 30px;
+    margin-top: 30px;
+}
+.screenshots-img{
+    width: 25%;
+    position: relative;
+}
+screenshots-img img{
+    width: 100%;
 }
 .screenshots-text{
-    width: 40%;
-}
-#screenshots,
-#reviews-says{
-    margin-left: 10%;
-    margin-right: 10%;
-}
-#screenshots-when-the-clouds-1,
-#screenshots-when-the-clouds-2,
-#screenshots-when-the-rain,
-reviews-says{
-    margin-top: 5%;
-}
-#screenshots-when-the-clouds-1,
-#screenshots-when-the-clouds-2,
-#screenshots-when-the-rain {
-    display: flex;
-    align-items: flex-start;
-}
-#screenshots-when-the-clouds-1  .screenshots-img,
-#screenshots-when-the-clouds-2  .screenshots-img,
-#screenshots-when-the-rain .screenshots-img{
-    display: inline-block;
-}
-#screenshots-when-the-clouds-1 .screenshots-text,
-#screenshots-when-the-rain .screenshots-text,
-#screenshots-when-the-clouds-2  .screenshots-text {
-    margin-right: 18%;
-    text-align: justify;
+    width: 50%;
+    box-sizing: border-box;
     margin-top: 100px;
 }
- #screenshots-when-the-clouds-2  .screenshots-text{
-    margin-left: 18%;
-    margin-right: 0%;
+#screenshots div:nth-child(2n) .screenshots-text {
+    margin-left: 150px;
 }
-.screenshots-text  p {
-    color: gray;
+#screenshots div:nth-child(2n+1) .screenshots-text {
+    margin-right: 100px;
 }
-#how-to-download-app {
+.screenshots-image-circle{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    text-align: center;
+    position: absolute;
+    font-size: 20px;
+    padding-top: 35px;
+    box-sizing: border-box;
+    color: white;
+}
+.screenshots-img div:nth-of-type(2) {
+    left:230px;
+    top:150px;
+}
+#circle-cloudy{
+    background-color: #f4e64b;
+}
+#circle-15-degree{
+    background-color: #2675d6;
+}
+#circle-cloudy2{
+    background-color: #f2b526;
+}
+#circle-25-degree{
+    background-color: #d66c26;
+}
+#circle-rainy{
+    background-color: #a6ede7;
+}
+#circle-9-degree{
+    background-color: #434549;
+}
+.screenshots-img div:nth-of-type(3) {
+    left:-85px;
+    bottom: 150px;
+}
+.screenshots-background-text{
+    position: absolute;
+    font-size: 170px;
+    left: 80px;
+    transform: rotate(90deg);
+    bottom: 190px;
+    color: gainsboro;
+    z-index: -1;
+}
+.download-img img,
+.screenshots-text img{
+    max-width: 100%;
+}
+.rainy{
     display: flex;
-    align-items: flex-start;
+    flex-direction: row-reverse;
+    position: relative;
 }
-.review{
-    display: inline-block;
-    width: 45%;
-    margin-left: 4%;
-    margin-top: 3%;
+.rainy > div{
+    border: 1px dotted grey;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding-top: 18px;
+    box-sizing: border-box;
+    color: gray;
+    position: absolute;
+    font-size: 13px;
+    transform: rotateY(-10deg);
+    background-color: white;
 }
-.person {
-    font-size: 12px;
-    width: 100%;
+.rainy > div:nth-child(1){
+    left: 80px;
 }
-.quote{
-    width: 100%;
+.rainy > div:nth-child(2){
+    left: 40px;
+}
+.rainy > div:nth-child(3){
+    left: 0px;
+}
+#reviews-says{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+#reviews-says > div:nth-child(2){
+    margin-top: 20px;
+}
+.review-column{
+    width: 50%;
+}
+.review-column > i {
+    color: #6388FB;
+   font-size: 150%;
+}
+.person{
+    font-size: 13px;
+}
+.review-column i:nth-of-type(2){
+    float: right;
+    margin-right: 50px;
 }
 #how-to-download-app{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 50px;
     background-image: url(../images/homebg.png);
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 5%;
-    margin-top: 5%;
+    color: white;
+    padding-top: 40px;
 }
-#footer{
-    padding:0 10%;
-    background-color: #2F2F4F;
-    width: 100%;
-    box-sizing: border-box;
+#how-to-download-app h1{
+    color: white;
 }
-.download-text{
-    text-align: justify;
-    margin-left: 4%;
-    width: 28%;
-}
-.download-text > h1{
-    text-align: left;
-    width: 100%
-}
-.download-text > p{
-    text-align: left;
-    width: 85%
-}
-.download-text > img {
-    width: 100px;
+.download-text {
+    width: 25%;
 }
 .download-img{
-    display: inline-block;
-    width: 65%;
-    text-align: center;
+    padding-top: 40px;
+    width: 40%;
 }
-.download-img > img{
-    display: inline-block;
-    width: 55%;
+#footer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #2F2F4F;
 }
-#footer-link{
-    width: 30%;
-    text-align: right;
+#footer hr{
+    width: 80%;
 }
-#footer-logo{
-    margin-right: 1%;
-}
-#footer-bottom{
-    text-align: center;
-    padding: 1%;
-    box-sizing: border-box;
-    color: gray;
+#footer > div:nth-child(1){
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
