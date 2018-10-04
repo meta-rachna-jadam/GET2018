@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <title>Contact Us Form</title>
+        <link href="style/form.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <script src="script/form-validation.js" ></script>
+    </head>
+    <body>
+        <div class="container-of-form">
+            <div class="form-type">
+                <h2>Contact Us Today!</h2>
+            </div>
+            <div class="form-field-container">
+                <form id="contact-us-form" >
+                    
+                    <div class="form-row">
+                        <div class="form-entry-column">
+                            <div class="form-entry">
+                                <span>First Name<span class="required">*</span></span>
+                            </div>
+                        </div>
+                        <div class="form-field-column">
+                            <div class="form-field-icon">
+                                <span class="icon"><i class="fas fa-user"></i></span>
+                            </div>
+                            <div class="form-field">
+                                <input type="text" name="first-name" 
+                                       id="firstName" placeholder="First Name" onkeyup="validateName(this)" onchange="validateName(this)" required />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-entry-column">
+                            <div class="form-entry">
+                                <span>Last Name</span>
+                            </div>
+                        </div>
+                        <div class="form-field-column">
+                            <div class="form-field-icon">
+                                <span class="icon"><i class="fas fa-user"></i></span>
+                            </div>
+                            <div class="form-field">
+                                <input type="text" name="last-name" placeholder="Last Name" id="lastName"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-entry-column">
+                            <div class="form-entry">
+                                <span>E-Mail<span class="required">*</span></span>
+                            </div>
+                        </div>
+                        <div class="form-field-column">
+                            <div class="form-field-icon">
+                                <span class="icon"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <div class="form-field">
+                                <input type="text" name="e-mail" id="emailId" placeholder="E-Mail Address" onkeyup="validateEmail(this)" onchange="validateEmail(this)" required />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-entry-column">
+                            <div class="form-entry">
+                                <span>Phone #<span class="required">*</span></span>
+                            </div>
+                        </div>
+                        <div class="form-field-column">
+                            <div class="form-field-icon">
+                                <span class="icon"><i class="fas fa-phone"></i></span>
+                            </div>
+                            <div class="form-field">
+                                <input type="text" name="phone" id="contactNumber" maxlength="12" placeholder="(845)555-1212" onkeyup="validateNumber(this)" onchange="validateNumber(this)" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-entry-column">
+                            <div class="form-entry">
+                                <span>Address</span>
+                            </div>
+                        </div>
+                        <div class="form-field-column">
+                            <div class="form-field-icon">
+                                <span class="icon"><i class="fas fa-home"></i></span>
+                            </div>
+                            <div class="form-field">
+                                <input type="text" name="address" id="address" placeholder="Address"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-entry-column">
+                            <div class="form-entry">
+                                <span>City</span>
+                            </div>
+                        </div>
+                        <div class="form-field-column">
+                            <div class="form-field-icon">
+                                <span class="icon"><i class="fas fa-home"></i></span>
+                            </div>
+                            <div class="form-field">
+                                <input type="text" name="city" id="city" placeholder="City" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-entry-column">
+                            <div class="form-entry">
+                                <span>State<span class="required">*</span></span>
+                            </div>
+                        </div>
+                        <div class="form-field-column">
+                            <div class="form-field-icon">
+                                <span class="icon"><i class="fas fa-bars"></i></span>
+                            </div>
+                            <div class="form-field">
+                                <select name="state" id="state" onchange="validateState(this)" required>
+                                    <option value="">Please select your sate</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Maharastra">Maharastra</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row" id="submit-button">
+                        <div class="form-entry-column"> 
+                        </div>
+                        <div class="form-field-column">
+                            <button id="contact-us-submit-button" type="button" onclick="return validateSignupForm()"><span class="icon">Send&nbsp&nbsp<i class="fas fa-paper-plane"></i></span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
