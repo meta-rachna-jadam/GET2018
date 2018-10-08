@@ -53,7 +53,6 @@ DoublyList.prototype.remove = function(position) {
         length = this._length,
         count = 0,
         message = {failure: 'Failure: non-existent node in this list.'},
-        message = {success: 'Success: node remove successfully.'},
         beforeNodeToDelete = null,
         nodeToDelete = null,
         deletedNode = null;
@@ -98,7 +97,7 @@ DoublyList.prototype.remove = function(position) {
     }
  
     this._length--;
-    return message.success;
+    return deletedNode;
 };
 
 // to print complete list
@@ -109,13 +108,3 @@ DoublyList.prototype.print = function() {
         currentNode = currentNode.next;
     }
 }
-
-var linkedList = new DoublyList();
-linkedList.add(10);
-console.log(linkedList.searchNodeAt(0).head);
-linkedList.remove(0);
-linkedList.add(10);
-//console.log(linkedList.searchNodeAt(4).data);
-console.log("Length = "+linkedList._length);
-console.log("\n\nResult:-\n");
-linkedList.print();
