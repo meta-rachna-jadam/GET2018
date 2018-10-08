@@ -261,5 +261,6 @@ screenshots-img img{
 #footer > div:nth-child(1){
     display: flex;
     justify-content: space-around;
+    
     align-items: center;
 }
