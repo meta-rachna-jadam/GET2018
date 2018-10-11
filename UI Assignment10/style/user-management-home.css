@@ -2,15 +2,23 @@ body {
     margin: 0px;
     padding: 0px;
 }
+input:invalid {
+    border: 1px solid red;
+}
 .container {
     border: 4px solid gainsboro;
-    width: 75%;
     margin: auto;
     padding: 0px;
+}
+#header{
+    padding: 0px;
+    margin: 0px -15px;
 }
 header {
     background-color: #9eeff7;
     padding: 5px 0px;
+    width: 100%;
+    box-sizing: border-box;
 }
 .modal-title{
     font-size: 20px;
@@ -22,9 +30,14 @@ header {
 #search-input {
     border-radius: 10px;
 }
-#user-list{
-    padding: 0px 35px;
-}
 .icon{
    float: right;
 }
+#user-list > div:nth-child(2)> ul {
+    
+    width: 100%;
+}
+img {
+    height: 100px;
+}
+
