@@ -2,6 +2,13 @@
   "shipping": [
     {
       "id": 1,
+      "name": "rachna",
+      "address1": "street 1",
+      "address2": "orleans road",
+      "city": "new york"
+    },
+    {
+      "id": 2,
       "name": "akshitadf",
       "address1": "street 1",
       "address2": "orleans road",
